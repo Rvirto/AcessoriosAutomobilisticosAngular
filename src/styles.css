@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+.tabela-cliente-acao {
+  width: 60px;
+  text-align: center;
+}
+
+.tabela-cliente-cidade {
+  width: 150px;
+  text-align: center;
+}
+
+.tabela-cliente-contato {
+  width: 140px;
+  text-align: center;
+}
