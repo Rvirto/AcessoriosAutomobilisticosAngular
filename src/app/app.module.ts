@@ -1,3 +1,5 @@
+import { BarraModule } from './barra/barra.module';
+import { CarrosModule } from './carros/carros.module';
 import { FornecedoresModule } from './fornecedores/fornecedores.module';
 import { FuncionarioModule } from './funcionarios/funcionario.module';
 import { ToastyModule } from 'ng2-toasty';
@@ -9,6 +11,7 @@ import { ConfirmationService } from 'primeng/components/common/confirmationservi
 
 
 import { AppComponent } from './app.component';
+import { RoutingModule } from './routing.module';
 
 
 @NgModule({
@@ -21,7 +24,10 @@ import { AppComponent } from './app.component';
     ToastyModule.forRoot(),
     FuncionarioModule,
     ConfirmDialogModule,
-    FornecedoresModule
+    FornecedoresModule,
+    CarrosModule,
+    BarraModule,
+    RoutingModule
   ],
   providers: [ConfirmationService],
   bootstrap: [AppComponent]

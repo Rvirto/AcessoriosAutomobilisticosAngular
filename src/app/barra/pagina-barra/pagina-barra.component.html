@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgba(9, 87, 110, 0.856);">
+
+  <div>
+
+  </div>
+  <button class="navbar-toggler" type="button" data-toggle="collapse"
+  data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+  aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#"> Início <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#"> Acessórios <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#"> Promoções <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" style="cursor: pointer;" (click)="abrirMenu()">
+          Cadastros <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#"> Sobre <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Entrar <i class="fa fa-sign-in" aria-hidden="true"></i></button>
+    </form>
+  </div>
+
+</nav>
+
+<p-sidebar [(visible)]="menu" [baseZIndex]="10000">
+  <h1 class="text-center">Cadastros</h1>
+  <div class="ui-sm-12 ui-md-12 ui-g-12">
+  <a [routerLink]="['/carros']" routerLinkActive="router-link-active" ><button class="btn btn-outline-primary btn-lg btn-block">
+     Carros </button></a>
+  </div>
+  <div class="ui-sm-12 ui-md-12 ui-g-12">
+  <a [routerLink]="['/clientes']"><button class="btn btn-outline-primary btn-lg btn-block">
+     Clientes </button></a>
+</div>
+<div class="ui-sm-12 ui-md-12 ui-g-12">
+    <a [routerLink]="['/fornecedores']"><button class="btn btn-outline-primary btn-lg btn-block">
+      Fornecedores </button></a>
+</div>
+<div class="ui-sm-12 ui-md-12 ui-g-12">
+  <a [routerLink]="['/funcionarios']"><button class="btn btn-outline-primary btn-lg btn-block">
+    Funcionários </button></a>
+</div>
+</p-sidebar>

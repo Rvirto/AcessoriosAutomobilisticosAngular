@@ -1,0 +1,152 @@
+<div class="fundo">
+<div class="container">
+  <div class="ui-g-12">
+    <h1 class="text-center"><b>Carros</b></h1>
+  </div>
+  <div class="ui-g-12">
+      <button class="btn btn-success" (click)="abrirDialogNovoCarro()">
+         Novo <i class="fa fa-plus"></i></button>
+  </div>
+  <div class="ui-g-12">
+        <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+            <input #fa type="text" pInputText size="20" placeholder="Busca..." maxlength="10">
+        </div>
+      <p-dataTable [value]="carros" [paginator]="true" [rows]="8"
+      [responsive]="true" emptyMessage="Nenhum Carro Encontrado..." [globalFilter]="fa"
+      [rowsPerPageOptions]="['8','15', '20', '30', '50', '100']">
+      <p-column styleClass="tabela-cliente-acao" header="Ações">
+          <ng-template pTemplate="body" let-car="rowData">
+              <button class="btn btn-warning" (click)="abrirDialogEditarCarro(car)">
+                <i class="fa fa-pencil"></i></button>
+          </ng-template>
+        </p-column>
+      <p-column field="carro" header="Carro"></p-column>
+      <p-column field="cliente.nome" header="Cliente"></p-column>
+      <p-column field="placa" header="Placa"></p-column>
+      <p-column field="modelo" header="Modelo"></p-column>
+      <p-column field="ano" header="Ano"  styleClass="tabela-cliente-acao"></p-column>
+      <p-column field="cor" header="Cor" styleClass="tabela-cliente-cidade"></p-column>
+      </p-dataTable>
+
+  </div>
+</div>
+</div>
+
+
+<p-dialog header="Cadastro Novo Carro" [(visible)]="dialogNovoCarro"
+[responsive]="true" showEffect="fade" [modal]="true" [closable]="true"
+width="600" [draggable]="false">
+<div class="container">
+  <form #carro="ngForm">
+        <div class="ui-g-9 ui-sm-12 ui-fluid">
+            <label><b>Carro</b></label>
+            <input pInputText type="text" name="carro" required
+            [(ngModel)]="novoCarro.carro" minlength="5" maxlength="50" #carroCliente>
+         </div>
+
+        <div class="ui-g-12 ui-sm-12 ui-fluid">
+            <label><b>Clientes</b></label>
+          <p-dropdown [options]="clientes" placeholder="Selecione um Cliente" required
+          [autoWidth]="false" [filter]="true" [(ngModel)]="novoCarro.cliente.id"
+          name="cliente" #cliente emptyFilterMessage="Nenhum Cliente Encontrado"></p-dropdown>
+         </div>
+
+         <div class="ui-g-6 ui-sm-12 ui-fluid">
+            <label><b>Placa</b></label>
+            <p-inputMask mask="aaa-9999" name="placa" required
+            [(ngModel)]="novoCarro.placa" placeholder="CYX-5261"
+            #placaCarro></p-inputMask>
+         </div>
+
+         <div class="ui-g-6 ui-sm-12 ui-fluid">
+            <label><b>Modelo</b></label>
+            <input pInputText type="text" name="modelo" required
+            [(ngModel)]="novoCarro.modelo" minlength="2" maxlength="15" #modeloCarro>
+         </div>
+
+         <div class="ui-g-5 ui-sm-12 ui-fluid">
+            <label><b>Ano</b></label>
+            <input pInputText type="number" name="ano" required
+            [(ngModel)]="novoCarro.ano" minlength="4" maxlength="4" #anoCarro>
+         </div>
+
+         <div class="ui-g-5 ui-sm-12 ui-fluid">
+            <label><b>Cor</b></label>
+            <input pInputText name="cor" required
+            [(ngModel)]="novoCarro.cor" #cor Carro>
+         </div>
+
+        </form>
+         <div class="ui-sm-12 ui-md-4 ui-g-6">
+           <button class="btn btn-success"
+           (click)="salvarNovoCarro()">
+           <i class="fa fa-check"></i> Salvar</button>
+         </div>
+
+         <div class="ui-sm-12 ui-md-4 ui-g-6">
+             <button class="btn btn-warning"
+             (click)="fechar()">
+               <i class="fa fa-times"></i> Cancelar</button>
+           </div>
+  </div>
+</p-dialog>
+
+<p-dialog header="Atualizar Carro" [(visible)]="dialogEditarCarro"
+[responsive]="true" showEffect="fade" [modal]="true" [closable]="true"
+width="600" [draggable]="false">
+<div class="container">
+  <div *ngIf="carroSelecionado">
+      <form #carros="ngForm">
+      <div class="ui-g-9 ui-sm-12 ui-fluid">
+          <label><b>Carro</b></label>
+          <input pInputText type="text" name="carro" required
+          [(ngModel)]="carroSelecionado.carro" minlength="5" maxlength="50" #carroCliente>
+       </div>
+
+      <div class="ui-g-12 ui-sm-12 ui-fluid">
+          <label><b>Clientes</b></label>
+        <p-dropdown [options]="clientes" placeholder="Selecione um Cliente" required
+        [autoWidth]="false" [filter]="true" [(ngModel)]="carroSelecionado.cliente.id"
+        name="cliente" #cliente emptyFilterMessage="Nenhum Cliente Encontrado"></p-dropdown>
+       </div>
+
+       <div class="ui-g-6 ui-sm-12 ui-fluid">
+          <label><b>Placa</b></label>
+          <p-inputMask mask="aaa-9999" name="placa" required
+          [(ngModel)]="carroSelecionado.placa" placeholder="CYX-5261"
+          #placaCarro></p-inputMask>
+       </div>
+
+       <div class="ui-g-6 ui-sm-12 ui-fluid">
+          <label><b>Modelo</b></label>
+          <input pInputText type="text" name="modelo" required
+          [(ngModel)]="carroSelecionado.modelo" minlength="2" maxlength="15" #modeloCarro>
+       </div>
+
+       <div class="ui-g-5 ui-sm-12 ui-fluid">
+          <label><b>Ano</b></label>
+          <input pInputText type="number" name="ano" required
+          [(ngModel)]="carroSelecionado.ano" minlength="4" maxlength="4" #anoCarro>
+       </div>
+
+       <div class="ui-g-5 ui-sm-12 ui-fluid">
+          <label><b>Cor</b></label>
+          <input pInputText name="cor" required
+          [(ngModel)]="carroSelecionado.cor" #cor Carro>
+       </div>
+      </form>
+        </div>
+         <div class="ui-sm-12 ui-md-5 ui-g-6">
+           <button class="btn btn-success"
+           (click)="atualizaCarro()">
+           <i class="fa fa-retweet"></i> Atualizar e Fechar</button>
+         </div>
+
+         <div class="ui-sm-12 ui-md-4 ui-g-6">
+             <button class="btn btn-warning"
+             (click)="fechar()">
+               <i class="fa fa-times"></i> Cancelar</button>
+           </div>
+  </div>
+</p-dialog>
