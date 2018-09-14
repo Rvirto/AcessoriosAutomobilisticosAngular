@@ -8,6 +8,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdialog';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
+import { ServicosModule } from './servicos/servicos.module';
+import { ProdutosModule } from './produtos/produtos.module';
 
 
 import { AppComponent } from './app.component';
@@ -27,7 +29,9 @@ import { RoutingModule } from './routing.module';
     FornecedoresModule,
     CarrosModule,
     BarraModule,
-    RoutingModule
+    RoutingModule,
+    ServicosModule,
+    ProdutosModule
   ],
   providers: [ConfirmationService],
   bootstrap: [AppComponent]

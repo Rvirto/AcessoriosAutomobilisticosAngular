@@ -34,7 +34,8 @@ export class FuncionarioService {
   public atualizarFuncionario(funcionario: Funcionario): Promise<Funcionario> {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.put(`${this.funcionarioURL}/${funcionario.id}`, JSON.stringify(funcionario), { headers })
+    return this.http.put(`${this.funcionarioURL}/${funcionario.id}`,
+    JSON.stringify(funcionario), { headers })
     .toPromise()
     .then(response => response.json())
     .catch(erro => {

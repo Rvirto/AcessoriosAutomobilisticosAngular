@@ -19,3 +19,13 @@
   width: 100vw;
   height: 100vh;
  }
+
+ .tabela-servico-acao {
+  width: 140px;
+  text-align: center;
+ }
+
+ .tabela-servico-valor {
+  width: 170px;
+  text-align: center;
+ }

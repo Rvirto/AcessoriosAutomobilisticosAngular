@@ -1,0 +1,104 @@
+<div class="container">
+
+  <div class="ui-g-12">
+    <h1><b>Serviços</b></h1>
+  </div>
+  <div class="ui-g-12">
+    <button class="btn btn-success" (click)="abrirDialogNovoServico()">
+       Novo <i class="fa fa-plus"></i></button>
+</div>
+<div class="ui-g-12">
+      <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+          <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+          <input #fa type="text" pInputText size="20" placeholder="Busca..." maxlength="10">
+      </div>
+    <p-dataTable [value]="servicos" [paginator]="true" [rows]="8"
+    [responsive]="true" emptyMessage="Nenhum Serviço Encontrado..." [globalFilter]="fa"
+    [rowsPerPageOptions]="['8','15', '20', '30', '50', '100']">
+    <p-column styleClass="tabela-servico-acao" header="Ações">
+        <ng-template pTemplate="body" let-ser="rowData">
+          <button class="btn btn-warning" (click)="abrirDialogEditarServico(ser)">
+            <i class="fa fa-pencil"></i></button>
+           <!-- <button class="btn btn-danger" (click)="confirmarExclusao(ser.id)"
+            style="margin-top: 3px;"><i class="fa fa-trash"></i></button> -->
+        </ng-template>
+      </p-column>
+    <p-column field="descricao" header="Descrição"></p-column>
+    <p-column styleClass="tabela-servico-valor" field="valor" header="Valor">
+    <ng-template pTemplate="body" let-serv="rowData">
+      {{ serv.valor | currency:'BRL':true:'1.2-2' }}
+    </ng-template>
+    </p-column>
+    </p-dataTable>
+
+</div>
+</div>
+
+<p-dialog header="Cadastro Novo Serviço" [(visible)]="dialogNovoServico"
+  [responsive]="true" showEffect="fade" [modal]="true" [closable]="true"
+  width="600" [draggable]="false">
+  <div class="container">
+    <form #servico="ngForm">
+
+           <div class="ui-g-9 ui-md-9 ui-sm-12 ui-fluid">
+              <label><b>Descrição</b></label>
+              <input pInputText type="text" name="descricao" required
+              [(ngModel)]="novoServico.descricao" minlength="5" maxlength="50" #descricaoServico>
+           </div>
+
+           <div class="ui-g-6 ui-md-6 ui-sm-12 ui-fluid">
+              <label><b>Valor</b></label>
+              <input pInputText type="text" name="valor" required
+              [(ngModel)]="novoServico.valor" currencyMask
+              [options]="{prefix: 'R$ ', thousands: '.', decimal: ',', allowNegative: false}"
+              #valorServico>
+           </div>
+          </form>
+           <div class="ui-sm-12 ui-md-7 ui-g-6">
+             <button class="btn btn-success"
+             (click)="adicionarServico()" [disabled]="!servico.valid">
+             <i class="fa fa-check"></i> Salvar</button>
+           </div>
+
+           <div class="ui-sm-12 ui-md-4 ui-g-6">
+               <button class="btn btn-warning"
+               (click)="fechar()">
+                 <i class="fa fa-times"></i> Cancelar</button>
+             </div>
+    </div>
+  </p-dialog>
+
+  <p-dialog header="Alteração do Serviço" [(visible)]="dialogAlterarServico"
+  [responsive]="true" showEffect="fade" [modal]="true" [closable]="true"
+  width="600" [draggable]="false">
+  <div class="container" *ngIf="servicoSelecionado">
+    <form #servico="ngForm">
+
+           <div class="ui-g-9 ui-md-9 ui-sm-12 ui-fluid">
+              <label><b>Descrição</b></label>
+              <input pInputText type="text" name="descricao" required
+              [(ngModel)]="servicoSelecionado.descricao" minlength="5"
+              maxlength="50" #descricaoServico>
+           </div>
+
+           <div class="ui-g-6 ui-md-6 ui-sm-12 ui-fluid">
+              <label><b>Valor</b></label>
+              <input pInputText type="text" name="valor" required
+              [(ngModel)]="servicoSelecionado.valor" currencyMask
+              [options]="{prefix: 'R$ ', thousands: '.', decimal: ',', allowNegative: false}"
+              #valorServico>
+           </div>
+          </form>
+           <div class="ui-sm-12 ui-md-7 ui-g-6">
+             <button class="btn btn-success"
+             (click)="alterarServico()" [disabled]="!servico.valid">
+             <i class="fa fa-check"></i> Salvar</button>
+           </div>
+
+           <div class="ui-sm-12 ui-md-4 ui-g-6">
+               <button class="btn btn-warning"
+               (click)="fechar()">
+                 <i class="fa fa-times"></i> Cancelar</button>
+             </div>
+    </div>
+  </p-dialog>
