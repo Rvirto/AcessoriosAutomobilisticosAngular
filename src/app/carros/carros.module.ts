@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { PaginaCarrosComponent } from './pagina-carros/pagina-carros.component';
 import { HttpModule } from '@angular/http';
 import {DropdownModule} from 'primeng/components/dropdown/dropdown';
+import { RelatorioCarrosComponent } from './relatorio-carros/relatorio-carros.component';
 
 @NgModule({
   imports: [
@@ -21,8 +22,8 @@ import {DropdownModule} from 'primeng/components/dropdown/dropdown';
     FormsModule,
     InputMaskModule
   ],
-  declarations: [PaginaCarrosComponent],
+  declarations: [PaginaCarrosComponent, RelatorioCarrosComponent],
   providers: [CarroService],
-  exports: [PaginaCarrosComponent]
+  exports: [PaginaCarrosComponent, RelatorioCarrosComponent]
 })
 export class CarrosModule { }

@@ -10,6 +10,7 @@ import { FornecedorService } from './shared/service/fornecedor.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PaginaFornecedoresComponent } from './pagina-fornecedores/pagina-fornecedores.component';
+import { RelatorioFornecedoresComponent } from './relatorio-fornecedores/relatorio-fornecedores.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,7 @@ import { PaginaFornecedoresComponent } from './pagina-fornecedores/pagina-fornec
     BrowserAnimationsModule,
     InputTextModule
   ],
-  declarations: [PaginaFornecedoresComponent],
+  declarations: [PaginaFornecedoresComponent, RelatorioFornecedoresComponent],
   providers: [FornecedorService],
   exports: [PaginaFornecedoresComponent]
 })

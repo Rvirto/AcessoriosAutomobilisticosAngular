@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="ui-g-12">
+      <h1 class="text-center"><b>Fornecedores</b></h1>
+    </div>
+
+    <div style="margin: auto; width: 100% !important;">
+      <table class="table table-striped table-dark table-responsive">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Fornecedor</th>
+            <th scope="col">Telefone</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">RG</th>
+            <th scope="col">CPF</th>
+            <th scope="col">Endereço</th>
+            <th scope="col">Número</th>
+            <th scope="col">Bairro</th>
+            <th scope="col">Cidade</th>
+            <th scope="col">UF</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let forne of fornecedores">
+            <td>{{ forne.nome }}</td>
+            <td>{{ forne.telefone }}</td>
+            <td>{{ forne.email }}</td>
+            <td>{{ forne.rg }}</td>
+            <td>{{ forne.cpf }}</td>
+            <td>{{ forne.endereco }}</td>
+            <td>{{ forne.numero }}</td>
+            <td>{{ forne.bairro }}</td>
+            <td>{{ forne.cidade }}</td>
+            <td>{{ forne.uf }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

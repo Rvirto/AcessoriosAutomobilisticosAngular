@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="ui-g-12">
+      <h1 class="text-center"><b>Funcionários</b></h1>
+    </div>
+
+    <div style="margin: auto; width: 100% !important;">
+      <table class="table table-striped table-dark table-responsive">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Funcionário</th>
+            <th scope="col">Telefone</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">RG</th>
+            <th scope="col">CPF</th>
+            <th scope="col">Endereço</th>
+            <th scope="col">Número</th>
+            <th scope="col">Bairro</th>
+            <th scope="col">Cidade</th>
+            <th scope="col">UF</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let func of funcionarios">
+            <td>{{ func.nome }}</td>
+            <td>{{ func.telefone }}</td>
+            <td>{{ func.email }}</td>
+            <td>{{ func.rg }}</td>
+            <td>{{ func.cpf }}</td>
+            <td>{{ func.endereco }}</td>
+            <td>{{ func.numero }}</td>
+            <td>{{ func.bairro }}</td>
+            <td>{{ func.cidade }}</td>
+            <td>{{ func.uf }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

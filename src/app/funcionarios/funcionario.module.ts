@@ -10,6 +10,7 @@ import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PaginaFuncionarioComponent } from './pagina-funcionario/pagina-funcionario.component';
+import { RelatorioFuncionariosComponent } from './relatorio-funcionarios/relatorio-funcionarios.component';
 
 @NgModule({
   imports: [
@@ -23,8 +24,8 @@ import { PaginaFuncionarioComponent } from './pagina-funcionario/pagina-funciona
     BrowserAnimationsModule,
     InputTextModule
   ],
-  declarations: [PaginaFuncionarioComponent],
+  declarations: [PaginaFuncionarioComponent, RelatorioFuncionariosComponent],
   providers: [FuncionarioService],
-  exports: [PaginaFuncionarioComponent]
+  exports: [PaginaFuncionarioComponent, RelatorioFuncionariosComponent]
 })
 export class FuncionarioModule { }

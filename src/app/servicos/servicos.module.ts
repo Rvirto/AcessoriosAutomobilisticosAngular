@@ -8,6 +8,7 @@ import { DataTableModule } from 'primeng/components/datatable/datatable';
 import { DialogModule } from 'primeng/components/dialog/dialog';
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { RelatorioServicosComponent } from './relatorio-servicos/relatorio-servicos.component';
 
 @NgModule({
   imports: [
@@ -19,8 +20,8 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
     InputTextModule,
     CurrencyMaskModule
   ],
-  declarations: [PaginaServicosComponent],
-  exports: [PaginaServicosComponent],
+  declarations: [PaginaServicosComponent, RelatorioServicosComponent],
+  exports: [PaginaServicosComponent, RelatorioServicosComponent],
   providers: [ServicosService]
 })
 export class ServicosModule { }

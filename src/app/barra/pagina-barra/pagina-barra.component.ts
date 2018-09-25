@@ -8,17 +8,26 @@ import { Component, OnInit } from '@angular/core';
 export class PaginaBarraComponent implements OnInit {
 
 public menu: boolean;
+public menuRelatorio: boolean;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  abrirMenu() {
+  public abrirMenu(): void {
     this.menu = true;
   }
 
-  fecharMenu() {
+  public fecharMenu(): void {
     this.menu = false;
+  }
+
+  public abrirMenuRelatorio(): void {
+    this.menuRelatorio = true;
+  }
+
+  public fecharMenuRelatorio(): void {
+    this.menuRelatorio = false;
   }
 }

@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="ui-g-12">
+      <h1 class="text-center"><b>Serviços</b></h1>
+    </div>
+
+    <div style="margin: auto; width: 26% !important;">
+      <table class="table table-striped table-dark table-responsive">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Serviço</th>
+            <th scope="col">Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let serv of servicos">
+            <td>{{ serv.descricao }}</td>
+            <td>{{ serv.valor | currency:'BRL':true:'1.2-2' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

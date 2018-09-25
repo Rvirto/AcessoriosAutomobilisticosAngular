@@ -15,7 +15,7 @@
         <p-dataTable [value]="funcionarios" [paginator]="true" [rows]="8"
         [responsive]="true" emptyMessage="Nenhum Funcionário Encontrado..." [globalFilter]="fa"
         [rowsPerPageOptions]="['8','15', '20', '30', '50', '100']">
-        <p-column styleClass="tabela-cliente-acao" header="Ações">
+        <p-column styleClass="tabela-produto-acao" header="Ações">
             <ng-template pTemplate="body" let-fu="rowData">
                 <button class="btn btn-warning" (click)="abrirDialogEditarFuncionario(fu)">
                   <i class="fa fa-pencil"></i></button>
@@ -120,7 +120,7 @@
   [responsive]="true" showEffect="fade" [modal]="true" [closable]="true"
   width="600" [draggable]="false">
   <div class="container">
-    <form #funcionarioEdita="ngForm">
+    <form #funcionario="ngForm">
     <div *ngIf="selecionadoFuncionario">
           <div class="ui-g-9 ui-fluid">
               <label><b>Funcionário</b></label>
@@ -130,7 +130,7 @@
 
           <div class="ui-g-5 ui-fluid">
               <label><b>Telefone</b></label>
-              <p-inputMask mask="(99)99999-9999" type="text" name="telefone"
+              <p-inputMask mask="(99)99999-9999" type="text" name="telefone" required
               [(ngModel)]="selecionadoFuncionario.telefone" minlength="5" maxlength="50" #telefoneFuncionario></p-inputMask>
            </div>
 
@@ -142,19 +142,19 @@
 
            <div class="ui-g-5 ui-fluid">
               <label><b>RG</b></label>
-              <p-inputMask mask="99.999.999-9" type="text" name="rg"
+              <p-inputMask mask="99.999.999-9" type="text" name="rg" required
               [(ngModel)]="selecionadoFuncionario.rg" minlength="12" maxlength="12" #rgFuncionario></p-inputMask>
            </div>
 
            <div class="ui-g-5 ui-fluid">
               <label><b>CPF</b></label>
-              <p-inputMask mask="999.999.999-99" type="text" name="cpf"
+              <p-inputMask mask="999.999.999-99" type="text" name="cpf" required
               [(ngModel)]="selecionadoFuncionario.cpf" minlength="14" maxlength="14" #cpfFuncionario></p-inputMask>
            </div>
 
            <div class="ui-g-5 ui-fluid">
               <label><b>CEP</b></label>
-              <p-inputMask mask="99.999-999" name="cepResidencial"
+              <p-inputMask mask="99.999-999" name="cepResidencial" required
               [(ngModel)]="selecionadoFuncionario.cep" #cepFuncionario></p-inputMask>
            </div>
 
@@ -189,7 +189,7 @@
           </div>
     </form>
            <div class="ui-sm-12 ui-md-5 ui-g-6">
-             <button class="btn btn-success" [disabled]="funcionarioEdita.valid"
+             <button class="btn btn-success" [disabled]="!funcionario.valid"
              (click)="atualizaFuncionario()">
              <i class="fa fa-retweet"></i> Atualizar e Fechar</button>
            </div>

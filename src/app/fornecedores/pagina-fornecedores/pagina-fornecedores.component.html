@@ -118,9 +118,8 @@
   <p-dialog header="Atualizar Fornecedor" [(visible)]="dialogEditarFornecedor"
   [responsive]="true" showEffect="fade" [modal]="true" [closable]="true"
   width="600" [draggable]="false">
-  <div class="container">
-    <form #fornecedorEdita="ngForm">
-    <div *ngIf="selecionadoFornecedor">
+  <div class="container" *ngIf="selecionadoFornecedor">
+    <form #fornecedor="ngForm">
           <div class="ui-g-9 ui-fluid">
               <label><b>Fornecedor</b></label>
               <input pInputText type="text" name="nome" required
@@ -129,8 +128,8 @@
 
           <div class="ui-g-5 ui-fluid">
               <label><b>Telefone</b></label>
-              <p-inputMask mask="(99)99999-9999" type="text" name="telefone"
-              [(ngModel)]="selecionadoFornecedor.telefone" minlength="5" maxlength="50" #telefoneFornecedor></p-inputMask>
+              <p-inputMask mask="(99)99999-9999" type="text" name="telefone" required
+              [(ngModel)]="selecionadoFornecedor.telefone" #telefoneFornecedor></p-inputMask>
            </div>
 
            <div class="ui-g-9 ui-fluid">
@@ -142,13 +141,13 @@
            <div class="ui-g-5 ui-fluid">
               <label><b>RG</b></label>
               <p-inputMask mask="99.999.999-9" type="text" name="rg" required
-              [(ngModel)]="selecionadoFornecedor.rg" minlength="12" maxlength="12" #rgFornecedor></p-inputMask>
+              [(ngModel)]="selecionadoFornecedor.rg" #rgFornecedor></p-inputMask>
            </div>
 
            <div class="ui-g-5 ui-fluid">
               <label><b>CPF</b></label>
               <p-inputMask mask="999.999.999-99" type="text" name="cpf" required
-              [(ngModel)]="selecionadoFornecedor.cpf" minlength="14" maxlength="14" #cpfFornecedor></p-inputMask>
+              [(ngModel)]="selecionadoFornecedor.cpf" #cpfFornecedor></p-inputMask>
            </div>
 
            <div class="ui-g-5 ui-fluid">
@@ -185,10 +184,9 @@
               <input pInputText type="text" name="uf" required
               [(ngModel)]="selecionadoFornecedor.uf" minlength="2" maxlength="2" #ufFornecedor>
            </div>
-          </div>
     </form>
            <div class="ui-sm-12 ui-md-5 ui-g-6">
-             <button class="btn btn-success" [disabled]="fornecedorEdita.valid"
+             <button class="btn btn-success" [disabled]="!fornecedor.valid"
              (click)="atualizaFornecedor()">
              <i class="fa fa-retweet"></i> Atualizar e Fechar</button>
            </div>

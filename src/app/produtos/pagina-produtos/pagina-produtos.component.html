@@ -1,3 +1,147 @@
-<p>
-  pagina-produtos works!
-</p>
+<div class="container">
+
+  <div class="ui-g-12">
+    <h2 class="text-center"><b>Produtos</b></h2>
+  </div>
+
+  <div class="ui-g-12">
+    <button class="btn btn-success" (click)="abrirDialogNovoProduto()">
+      <i class="fa fa-plus"></i> Novo
+    </button>
+  </div>
+  <div class="ui-g-12">
+    <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+      <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+      <input #fa type="text" pInputText size="20" placeholder="Busca..." maxlength="10">
+    </div>
+    <p-dataTable [value]="produtos" [paginator]="true" [rows]="8" [responsive]="true" emptyMessage="Nenhum Produto Encontrado..."
+      [globalFilter]="fa" [rowsPerPageOptions]="['8','15', '20', '30', '50', '100']">
+      <p-column styleClass="tabela-produto-acao" header="Ações">
+        <ng-template pTemplate="body" let-pro="rowData">
+          <button class="btn btn-warning" (click)="abrirDialogEditarProduto(pro)">
+            <i class="fa fa-pencil"></i></button>
+          <button class="btn btn-danger" (click)="confirmarExclusao(pro.id)" style="margin-top: 3px;"><i class="fa fa-trash"></i></button>
+        </ng-template>
+      </p-column>
+      <p-column field="produto" header="Produto"></p-column>
+      <p-column field="fornecedor.nome" header="Fornecedor"></p-column>
+      <p-column field="precoCompra" styleClass="tabela-servico-valor" header="Preço de Compra">
+        <ng-template pTemplate="body" let-pro="rowData">
+          {{ pro.precoCompra | currency:'BRL':true:'1.2-2' }}
+        </ng-template>
+      </p-column>
+      <p-column field="precoVenda" styleClass="tabela-servico-valor" header="Preço de Venda">
+        <ng-template pTemplate="body" let-pro="rowData">
+          {{ pro.precoVenda | currency:'BRL':true:'1.2-2' }}
+        </ng-template>
+      </p-column>
+      <p-column field="servico.valor" styleClass="tabela-servico-valor" header="Valor do Serviço">
+        <ng-template pTemplate="body" let-pro="rowData">
+          {{ pro.servico.valor | currency:'BRL':true:'1.2-2' }}
+        </ng-template>
+      </p-column>
+    </p-dataTable>
+  </div>
+</div>
+
+<p-dialog header="Cadastro Novo Produto" [(visible)]="dialogNovoProduto" [responsive]="true" showEffect="fade" [modal]="true"
+  [closable]="true" width="600" [draggable]="false">
+  <div class="container" *ngIf="novoProduto">
+    <form #produto="ngForm">
+      <div class="ui-g-9 ui-sm-12 ui-fluid">
+        <label><b>Produto</b></label>
+        <input pInputText type="text" name="produto" required [(ngModel)]="novoProduto.produto" minlength="5" maxlength="50"
+          #nomeProduto>
+      </div>
+
+      <div class="ui-g-3 ui-sm-12 ui-fluid">
+        <label><b>Quantidade</b></label>
+        <input pInputText type="number" name="quantidade" required [(ngModel)]="novoProduto.quantidade"
+          #quantidadeProduto>
+      </div>
+
+      <div class="ui-g-6 ui-sm-12 ui-fluid">
+        <label><b>Preço de Compra</b></label>
+        <input pInputText type="text" name="precoCompra" required [(ngModel)]="novoProduto.precoCompra"
+          #precoCompraProduto currencyMask [options]="{prefix: 'R$ ', thousands: '.', decimal: ',', allowNegative: false}">
+      </div>
+
+      <div class="ui-g-6 ui-sm-12 ui-fluid">
+        <label><b>Preço de Venda</b></label>
+        <input pInputText type="text" name="precoVenda" required [(ngModel)]="novoProduto.precoVenda"
+          #precoVendaProduto currencyMask [options]="{prefix: 'R$ ', thousands: '.', decimal: ',', allowNegative: false}">
+      </div>
+
+      <div class="ui-g-6 ui-sm-12 ui-fluid">
+        <p-dropdown [options]="fornecedores" placeholder="Selecione um Fornecedor" required [autoWidth]="false"
+          [filter]="true" [(ngModel)]="novoProduto.fornecedor.id" name="forne" #Fornecedor emptyFilterMessage="Nenhum Fornecedor Encontrado"></p-dropdown>
+      </div>
+
+      <div class="ui-g-6 ui-sm-12 ui-fluid">
+        <p-dropdown [options]="servicos" placeholder="Selecione um Serviço" required [autoWidth]="false" [filter]="true"
+          [(ngModel)]="novoProduto.servico.id" name="serv" #Servico emptyFilterMessage="Nenhum Serviço Encontrado"></p-dropdown>
+      </div>
+
+    </form>
+    <div class="ui-sm-12 ui-md-4 ui-g-6">
+      <button class="btn btn-success" (click)="salvarProduto()" [disabled]="produto.invalid">
+        <i class="fa fa-check"></i> Salvar</button>
+    </div>
+
+    <div class="ui-sm-12 ui-md-4 ui-g-6">
+      <button class="btn btn-warning" (click)="fechar()">
+        <i class="fa fa-times"></i> Cancelar</button>
+    </div>
+  </div>
+</p-dialog>
+
+<p-dialog header="Editar Produto" [(visible)]="dialogEditarProduto" [responsive]="true" showEffect="fade" [modal]="true"
+  [closable]="true" width="600" [draggable]="false">
+  <div class="container" *ngIf="produtoSelecionado">
+    <form #produtoEditar="ngForm">
+      <div class="ui-g-9 ui-sm-12 ui-fluid">
+        <label><b>Produto</b></label>
+        <input pInputText type="text" name="produto" required [(ngModel)]="produtoSelecionado.produto" minlength="5"
+          maxlength="50" #nomeProduto>
+      </div>
+
+      <div class="ui-g-3 ui-sm-12 ui-fluid">
+        <label><b>Quantidade</b></label>
+        <input pInputText type="number" name="quantidade" required [(ngModel)]="produtoSelecionado.quantidade"
+          #quantidadeProduto>
+      </div>
+
+      <div class="ui-g-6 ui-sm-12 ui-fluid">
+        <label><b>Preço de Compra</b></label>
+        <input pInputText type="text" name="precoCompra" required [(ngModel)]="produtoSelecionado.precoCompra"
+          #precoCompraProduto currencyMask [options]="{prefix: 'R$ ', thousands: '.', decimal: ',', allowNegative: false}">
+      </div>
+
+      <div class="ui-g-6 ui-sm-12 ui-fluid">
+        <label><b>Preço de Venda</b></label>
+        <input pInputText type="text" name="precoVenda" required [(ngModel)]="produtoSelecionado.precoVenda"
+          #precoVendaProduto currencyMask [options]="{prefix: 'R$ ', thousands: '.', decimal: ',', allowNegative: false}">
+      </div>
+
+      <div class="ui-g-6 ui-sm-12 ui-fluid">
+        <p-dropdown [options]="fornecedores" placeholder="Selecione um Fornecedor" required [autoWidth]="false"
+          [filter]="true" [(ngModel)]="produtoSelecionado.fornecedor.id" name="forne" #Fornecedor emptyFilterMessage="Nenhum Fornecedor Encontrado"></p-dropdown>
+      </div>
+
+      <div class="ui-g-6 ui-sm-12 ui-fluid">
+        <p-dropdown [options]="servicos" placeholder="Selecione um Serviço" required [autoWidth]="false" [filter]="true"
+          [(ngModel)]="produtoSelecionado.servico.id" name="serv" #Servico emptyFilterMessage="Nenhum Serviço Encontrado"></p-dropdown>
+      </div>
+
+    </form>
+    <div class="ui-sm-12 ui-md-4 ui-g-6">
+      <button class="btn btn-success" (click)="editarProduto()" [disabled]="produtoEditar.invalid">
+        <i class="fa fa-check"></i> Salvar</button>
+    </div>
+
+    <div class="ui-sm-12 ui-md-4 ui-g-6">
+      <button class="btn btn-warning" (click)="fechar()">
+        <i class="fa fa-times"></i> Cancelar</button>
+    </div>
+  </div>
+</p-dialog>

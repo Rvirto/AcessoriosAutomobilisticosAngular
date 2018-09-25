@@ -26,6 +26,11 @@
  }
 
  .tabela-servico-valor {
-  width: 170px;
+  width: 150px;
   text-align: center;
+ }
+
+ .tabela-produto-acao {
+   width: 130px;
+   text-align: center;
  }

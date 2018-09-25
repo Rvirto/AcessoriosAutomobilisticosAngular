@@ -3,7 +3,7 @@ import { CarrosModule } from './carros/carros.module';
 import { FornecedoresModule } from './fornecedores/fornecedores.module';
 import { FuncionarioModule } from './funcionarios/funcionario.module';
 import { ToastyModule } from 'ng2-toasty';
-import { ClienteModule } from './clientes/cliente/cliente.module';
+import { ClienteModule } from './clientes/cliente.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdialog';

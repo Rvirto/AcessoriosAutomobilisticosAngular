@@ -25,6 +25,10 @@
           Cadastros <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
+          <a class="nav-link" style="cursor: pointer;" (click)="abrirMenuRelatorio()">
+            Relatórios <span class="sr-only">(current)</span></a>
+        </li>
+      <li class="nav-item active">
         <a class="nav-link" href="#"> Sobre <span class="sr-only">(current)</span></a>
       </li>
     </ul>
@@ -62,3 +66,31 @@
     Serviços </button></a>
 </div>
 </p-sidebar>
+
+<p-sidebar [(visible)]="menuRelatorio" [baseZIndex]="10000">
+    <h1 class="text-center">Relatório</h1>
+    <div class="ui-sm-12 ui-md-12 ui-g-12">
+    <a [routerLink]="['/relatorioCarros']" routerLinkActive="router-link-active" ><button class="btn btn-outline-primary btn-lg btn-block">
+       Relatório de Carros </button></a>
+    </div>
+    <div class="ui-sm-12 ui-md-12 ui-g-12">
+    <a [routerLink]="['/relatorioClientes']"><button class="btn btn-outline-primary btn-lg btn-block">
+       Relatório de Clientes </button></a>
+  </div>
+  <div class="ui-sm-12 ui-md-12 ui-g-12">
+      <a [routerLink]="['/relatorioFornecedores']"><button class="btn btn-outline-primary btn-lg btn-block">
+        Relatório de Fornecedores </button></a>
+  </div>
+  <div class="ui-sm-12 ui-md-12 ui-g-12">
+    <a [routerLink]="['/relatorioFuncionarios']"><button class="btn btn-outline-primary btn-lg btn-block">
+        Relatório de Funcionários </button></a>
+  </div>
+  <div class="ui-sm-12 ui-md-12 ui-g-12">
+    <a [routerLink]="['/relatorioProdutos']"><button class="btn btn-outline-primary btn-lg btn-block">
+        Relatório de Produtos </button></a>
+  </div>
+  <div class="ui-sm-12 ui-md-12 ui-g-12">
+    <a [routerLink]="['/relatorioServicos']"><button class="btn btn-outline-primary btn-lg btn-block">
+        Relatório de Serviços </button></a>
+  </div>
+  </p-sidebar>
