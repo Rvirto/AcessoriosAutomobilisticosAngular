@@ -3,28 +3,16 @@
     <h1 class="text-center"><b>Carros</b></h1>
   </div>
 
-  <div style="margin: auto; width: 50% !important;">
-    <table class="table table-striped table-dark table-responsive">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">Carro</th>
-          <th scope="col">Cliente</th>
-          <th scope="col">Placa</th>
-          <th scope="col">Modelo</th>
-          <th scope="col">Ano</th>
-          <th scope="col">Cor</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let car of carros">
-          <td>{{ car.carro }}</td>
-          <td>{{ car.cliente.nome }}</td>
-          <td>{{ car.placa }}</td>
-          <td>{{ car.modelo }}</td>
-          <td>{{ car.ano }}</td>
-          <td>{{ car.cor }}</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="ui-g-12">
+      <p-dataTable [value]="carros" [paginator]="true" [rows]="8"
+      [responsive]="true" emptyMessage="Nenhum Carro Encontrado..."
+      [rowsPerPageOptions]="['8','15', '20', '30', '50', '100']">
+      <p-column field="carro" header="Carro"></p-column>
+      <p-column field="cliente.nome" header="Cliente"></p-column>
+      <p-column field="placa" header="Placa"></p-column>
+      <p-column field="modelo" header="Modelo"></p-column>
+      <p-column field="ano" header="Ano"  styleClass="tabela-cliente-acao"></p-column>
+      <p-column field="cor" header="Cor" styleClass="tabela-cliente-cidade"></p-column>
+      </p-dataTable>
   </div>
 </div>

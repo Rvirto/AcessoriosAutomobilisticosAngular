@@ -1,3 +1,4 @@
+import { InputMaskModule } from 'primeng/components/inputmask/inputmask';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { DialogModule } from 'primeng/components/dialog/dialog';
 import { DataTableModule } from 'primeng/components/datatable/datatable';
@@ -22,7 +23,8 @@ import { RelatorioProdutosComponent } from './relatorio-produtos/relatorio-produ
     DialogModule,
     InputTextModule,
     CurrencyMaskModule,
-    DropdownModule
+    DropdownModule,
+    InputMaskModule
   ],
   declarations: [PaginaProdutosComponent, RelatorioProdutosComponent],
   exports: [PaginaProdutosComponent, RelatorioProdutosComponent],

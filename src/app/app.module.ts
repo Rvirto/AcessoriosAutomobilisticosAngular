@@ -1,3 +1,4 @@
+import { SobreModule } from './sobre/sobre.module';
 import { BarraModule } from './barra/barra.module';
 import { CarrosModule } from './carros/carros.module';
 import { FornecedoresModule } from './fornecedores/fornecedores.module';
@@ -10,6 +11,7 @@ import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdia
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 import { ServicosModule } from './servicos/servicos.module';
 import { ProdutosModule } from './produtos/produtos.module';
+import { InicioModule } from './inicio/inicio.module';
 
 
 import { AppComponent } from './app.component';
@@ -31,7 +33,9 @@ import { RoutingModule } from './routing.module';
     BarraModule,
     RoutingModule,
     ServicosModule,
-    ProdutosModule
+    ProdutosModule,
+    SobreModule,
+    InicioModule
   ],
   providers: [ConfirmationService],
   bootstrap: [AppComponent]

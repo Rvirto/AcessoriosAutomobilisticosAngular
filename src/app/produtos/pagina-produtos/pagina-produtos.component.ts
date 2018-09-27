@@ -1,3 +1,5 @@
+import { FornecedorService } from './../../fornecedores/shared/service/fornecedor.service';
+import { ServicosService } from './../../servicos/shared/service/servicos.service';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 import { ToastyService } from 'ng2-toasty';
 import { Fornecedor } from './../../fornecedores/shared/model/fornecedor.model';
@@ -20,11 +22,17 @@ export class PaginaProdutosComponent implements OnInit {
   public dialogNovoProduto: boolean;
   public dialogEditarProduto: boolean;
   public produtoSelecionado: Produto = new Produto();
+  public dialogNovoServico: boolean;
+  public dialogNovoFornecedor: boolean;
+  public novoFornecedor: Fornecedor = new Fornecedor();
+  public novoServico: Servico = new Servico();
 
   constructor(
     private produtoService: ProdutoService,
     private toastyService: ToastyService,
-    private confirmacaoService: ConfirmationService
+    private confirmacaoService: ConfirmationService,
+    private servicoService: ServicosService,
+    private fornecedorService: FornecedorService
   ) { }
 
   ngOnInit() {
@@ -132,6 +140,52 @@ export class PaginaProdutosComponent implements OnInit {
     .catch(erro => {
       this.toastyService.clearAll();
       this.toastyService.error('Não foi possível excluir este produto!');
+    });
+  }
+
+  public abrirDialogNovoServico() {
+    this.dialogNovoServico = true;
+  }
+
+  public fecharServico() {
+    this.dialogNovoServico = false;
+    this.novoServico = new Servico();
+  }
+
+  public abrirDialogNovoFornecedor() {
+    this.dialogNovoFornecedor = true;
+  }
+
+  public fecharFornecedor() {
+    this.dialogNovoFornecedor = false;
+    this.novoFornecedor = new Fornecedor();
+  }
+
+  public salvarServico() {
+    this.servicoService.adicionarServico(this.novoServico)
+    .then(response => {
+      this.carregarServicos();
+      this.toastyService.clearAll();
+      this.toastyService.success('Serviço Adicionado com Sucesso!');
+      this.fecharServico();
+    })
+    .catch(erro => {
+      this.toastyService.clearAll();
+      this.toastyService.error('Problemas técnicos ao adicionar Serviço! Tente novamente...');
+    });
+  }
+
+  public salvarFornecedor() {
+    this.fornecedorService.novoFornecedor(this.novoFornecedor)
+    .then(response => {
+      this.carregarFornecedores();
+      this.toastyService.clearAll();
+      this.toastyService.success('Fornecedor Adicionado com Sucesso!');
+      this.fecharFornecedor();
+    })
+    .catch(erro => {
+      this.toastyService.clearAll();
+      this.toastyService.error('Problemas técnicos ao adicionar Fornecedor! Tente novamente...');
     });
   }
 }

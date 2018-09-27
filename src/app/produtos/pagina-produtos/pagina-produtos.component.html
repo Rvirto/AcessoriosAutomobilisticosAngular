@@ -73,11 +73,15 @@
       </div>
 
       <div class="ui-g-6 ui-sm-12 ui-fluid">
+        <a style="cursor:pointer; color:blue;" (click)="abrirDialogNovoFornecedor()">
+          Ainda não tem o Fornecedor Cadastrado? Cadastre já!</a>
         <p-dropdown [options]="fornecedores" placeholder="Selecione um Fornecedor" required [autoWidth]="false"
           [filter]="true" [(ngModel)]="novoProduto.fornecedor.id" name="forne" #Fornecedor emptyFilterMessage="Nenhum Fornecedor Encontrado"></p-dropdown>
       </div>
 
       <div class="ui-g-6 ui-sm-12 ui-fluid">
+          <a style="cursor:pointer; color:blue;" (click)="abrirDialogNovoServico()"
+          >Ainda não tem o Serviço deste Produto Cadastrado? Cadastre já!</a>
         <p-dropdown [options]="servicos" placeholder="Selecione um Serviço" required [autoWidth]="false" [filter]="true"
           [(ngModel)]="novoProduto.servico.id" name="serv" #Servico emptyFilterMessage="Nenhum Serviço Encontrado"></p-dropdown>
       </div>
@@ -145,3 +149,122 @@
     </div>
   </div>
 </p-dialog>
+
+<p-dialog header="Cadastro Novo Serviço" [(visible)]="dialogNovoServico"
+  [responsive]="true" showEffect="fade" [modal]="true" [closable]="true"
+  width="600" [draggable]="false">
+  <div class="container">
+    <form #servico="ngForm">
+
+           <div class="ui-g-9 ui-md-9 ui-sm-12 ui-fluid">
+              <label><b>Descrição</b></label>
+              <input pInputText type="text" name="descricao" required
+              [(ngModel)]="novoServico.descricao" minlength="5" maxlength="50" #descricaoServico>
+           </div>
+
+           <div class="ui-g-6 ui-md-6 ui-sm-12 ui-fluid">
+              <label><b>Valor</b></label>
+              <input pInputText type="text" name="valor" required
+              [(ngModel)]="novoServico.valor" currencyMask
+              [options]="{prefix: 'R$ ', thousands: '.', decimal: ',', allowNegative: false}"
+              #valorServico>
+           </div>
+          </form>
+           <div class="ui-sm-12 ui-md-7 ui-g-6">
+             <button class="btn btn-success"
+             (click)="salvarServico()" [disabled]="!servico.valid">
+             <i class="fa fa-check"></i> Salvar</button>
+           </div>
+
+           <div class="ui-sm-12 ui-md-4 ui-g-6">
+               <button class="btn btn-warning"
+               (click)="fecharServico()">
+                 <i class="fa fa-times"></i> Cancelar</button>
+             </div>
+    </div>
+  </p-dialog>
+
+
+  <p-dialog header="Cadastro Novo Fornecedor" [(visible)]="dialogNovoFornecedor"
+  [responsive]="true" showEffect="fade" [modal]="true" [closable]="true"
+  width="600" [draggable]="false">
+  <div class="container">
+    <form #fornecedor="ngForm">
+          <div class="ui-g-9 ui-fluid">
+              <label><b>Fornecedor</b></label>
+              <input pInputText type="text" name="nome" required
+              [(ngModel)]="novoFornecedor.nome" minlength="5" maxlength="50" #nomeFornecedor>
+           </div>
+
+          <div class="ui-g-5 ui-fluid">
+              <label><b>Telefone</b></label>
+              <p-inputMask mask="(99)99999-9999" type="text" name="telefone"
+              [(ngModel)]="novoFornecedor.telefone" minlength="11" maxlength="14" #telefoneFornecedor></p-inputMask>
+           </div>
+
+           <div class="ui-g-9 ui-fluid">
+              <label><b>E-mail</b></label>
+              <input pInputText type="text" name="email" required
+              [(ngModel)]="novoFornecedor.email" minlength="5" maxlength="50" #emailFornecedor>
+           </div>
+
+           <div class="ui-g-5 ui-fluid">
+              <label><b>RG</b></label>
+              <p-inputMask mask="99.999.999-9" type="text" name="rg"
+              [(ngModel)]="novoFornecedor.rg" minlength="12" maxlength="12" #rgFornecedor></p-inputMask>
+           </div>
+
+           <div class="ui-g-5 ui-fluid">
+              <label><b>CPF</b></label>
+              <p-inputMask mask="999.999.999-99" type="text" name="cpf"
+              [(ngModel)]="novoFornecedor.cpf" minlength="14" maxlength="14" #cpfFornecedor></p-inputMask>
+           </div>
+
+           <div class="ui-g-5 ui-fluid">
+              <label><b>CEP</b></label>
+              <p-inputMask mask="99999-999" name="cepResidencial"
+              [(ngModel)]="novoFornecedor.cep" #cepFornecedor></p-inputMask>
+           </div>
+
+           <div class="ui-g-9 ui-fluid">
+              <label><b>Endereço</b></label>
+              <input pInputText type="text" name="endereco" required
+              [(ngModel)]="novoFornecedor.endereco" minlength="5" maxlength="50" #enderecoFornecedor>
+           </div>
+
+           <div class="ui-g-3 ui-fluid">
+              <label><b>Número</b></label>
+              <input pInputText type="text" name="numero" required
+              [(ngModel)]="novoFornecedor.numero" minlength="1" maxlength="5" #numeroFornecedor>
+           </div>
+
+           <div class="ui-g-9 ui-fluid">
+              <label><b>Bairro</b></label>
+              <input pInputText type="text" name="bairro" required
+              [(ngModel)]="novoFornecedor.bairro" minlength="5" maxlength="50" #bairroFornecedor>
+           </div>
+
+           <div class="ui-g-6 ui-fluid">
+              <label><b>Cidade</b></label>
+              <input pInputText type="text" name="cidade" required
+              [(ngModel)]="novoFornecedor.cidade" minlength="5" maxlength="40" #cidadeFornecedor>
+           </div>
+           <div class="ui-sm-3 ui-md-3 ui-g-2 ui-fluid">
+              <label><b>UF</b></label>
+              <input pInputText type="text" name="uf" required
+              [(ngModel)]="novoFornecedor.uf" minlength="2" maxlength="2" #ufFornecedor>
+           </div>
+          </form>
+           <div class="ui-sm-12 ui-md-4 ui-g-6">
+             <button class="btn btn-success"
+             (click)="salvarFornecedor()" [disabled]="fornecedor.invalid">
+             <i class="fa fa-check"></i> Salvar</button>
+           </div>
+
+           <div class="ui-sm-12 ui-md-4 ui-g-6">
+               <button class="btn btn-warning"
+               (click)="fecharFornecedor()">
+                 <i class="fa fa-times"></i> Cancelar</button>
+             </div>
+    </div>
+  </p-dialog>

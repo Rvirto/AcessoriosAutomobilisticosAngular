@@ -118,7 +118,7 @@ width="600" [draggable]="false">
 [responsive]="true" showEffect="fade" [modal]="true" [closable]="true"
 width="600" [draggable]="false">
 <div class="container" *ngIf="clienteSelecionado">
-  <form #cliente="ngForm">
+  <form #clientes="ngForm">
         <div class="ui-g-9 ui-fluid">
             <label><b>Cliente</b></label>
             <input pInputText type="text" name="nomeSelecionado" required
@@ -186,7 +186,7 @@ width="600" [draggable]="false">
 </form>
          <div class="ui-sm-12 ui-md-5 ui-g-6">
            <button class="btn btn-success"
-           (click)="atualizaCliente()" [disabled]="!cliente.valid">
+           (click)="atualizaCliente()" [disabled]="!clientes.valid">
            <i class="fa fa-retweet"></i> Atualizar e Fechar</button>
          </div>
 

@@ -1,3 +1,4 @@
+import { ClienteService } from './../../clientes/shared/service/cliente.service';
 import { Cliente } from './../shared/model/Cliente.model';
 import { ToastyService } from 'ng2-toasty';
 import { Carro } from './../shared/model/Carros.model';
@@ -17,10 +18,13 @@ export class PaginaCarrosComponent implements OnInit {
   public carroSelecionado = new Carro();
   public dialogNovoCarro: boolean;
   public dialogEditarCarro: boolean;
+  public dialogNovoCliente: boolean;
+  public novoCliente: Cliente = new Cliente();
 
   constructor(
     private carroService: CarroService,
-    private toastyService: ToastyService
+    private toastyService: ToastyService,
+    private clienteService: ClienteService
   ) { }
 
   ngOnInit() {
@@ -95,6 +99,29 @@ export class PaginaCarrosComponent implements OnInit {
       this.toastyService.clearAll();
       this.toastyService.error('Problemas técnicos ao salvar novo o carro!');
     });
+  }
+
+  public abrirDialogNovoCliente() {
+    this.dialogNovoCliente = true;
+  }
+
+  public salvarCliente() {
+    this.clienteService.novoCliente(this.novoCliente)
+    .then(response => {
+      this.carregarClientes();
+      this.toastyService.clearAll();
+      this.toastyService.success('Cliente Adicionado com Sucesso!');
+      this.fecharCliente();
+    })
+    .catch(erro => {
+      this.toastyService.clearAll();
+      this.toastyService.error('Problemas técnicos ao adicionar Cliente! Tente novamente...');
+    });
+  }
+
+  public fecharCliente() {
+    this.dialogNovoCliente = false;
+    this.novoCliente = new Cliente();
   }
 
 }

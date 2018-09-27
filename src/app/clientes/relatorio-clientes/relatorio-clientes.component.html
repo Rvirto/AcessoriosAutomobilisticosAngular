@@ -3,36 +3,15 @@
       <h1 class="text-center"><b>Clientes</b></h1>
     </div>
 
-    <div style="margin: auto; width: 100% !important;">
-      <table class="table table-striped table-dark table-responsive">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">Cliente</th>
-            <th scope="col">Telefone</th>
-            <th scope="col">E-mail</th>
-            <th scope="col">RG</th>
-            <th scope="col">CPF</th>
-            <th scope="col">Endereço</th>
-            <th scope="col">Número</th>
-            <th scope="col">Bairro</th>
-            <th scope="col">Cidade</th>
-            <th scope="col">UF</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let cli of clientes">
-            <td>{{ cli.nome }}</td>
-            <td>{{ cli.telefone }}</td>
-            <td>{{ cli.email }}</td>
-            <td>{{ cli.rg }}</td>
-            <td>{{ cli.cpf }}</td>
-            <td>{{ cli.endereco }}</td>
-            <td>{{ cli.numero }}</td>
-            <td>{{ cli.bairro }}</td>
-            <td>{{ cli.cidade }}</td>
-            <td>{{ cli.uf }}</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="ui-g-12">
+        <p-dataTable [value]="clientes" [paginator]="true" [rows]="8"
+        [responsive]="true" emptyMessage="Nenhum Cliente Encontrado..."
+        [rowsPerPageOptions]="['8','15', '20', '30', '50', '100']">
+        <p-column field="nome" header="Cliente"></p-column>
+        <p-column field="telefone" header="Contato" styleClass="tabela-cliente-contato"></p-column>
+        <p-column field="email" header="E-mail" ></p-column>
+        <p-column field="cidade" header="Cidade" styleClass="tabela-cliente-cidade"></p-column>
+        <p-column field="uf" header="UF" styleClass="tabela-cliente-acao"></p-column>
+        </p-dataTable>
     </div>
   </div>

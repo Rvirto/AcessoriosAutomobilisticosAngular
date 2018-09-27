@@ -1,35 +1,41 @@
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgba(9, 87, 110, 0.856);">
+
+<nav class="navbar navbar-expand-lg navbar-dark"
+ style="background-color: rgba(9, 87, 110, 0.856);">
 
   <div>
 
   </div>
   <button class="navbar-toggler" type="button" data-toggle="collapse"
   data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-  aria-expanded="false" aria-label="Toggle navigation">
+  aria-expanded="false" aria-label="Toggle navigation"
+  (click)="isCollapsed = !isCollapsed">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+            <div class="imagem" style="cursor: pointer;"
+            [routerLink]="['/']"></div>
+          </li>
       <li class="nav-item active">
-        <a class="nav-link" href="#"> Início <span class="sr-only">(current)</span></a>
+        <a class="nav-link" style="cursor: pointer;"
+        [routerLink]="['/']" ><i class="fa fa-home"></i> Início <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="#"> Acessórios <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#"> Promoções <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="#"><i class="fa fa-shopping-cart"></i> Carrinho <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" style="cursor: pointer;" (click)="abrirMenu()">
-          Cadastros <span class="sr-only">(current)</span></a>
+         <i class="fa fa-database"></i> Cadastros <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
           <a class="nav-link" style="cursor: pointer;" (click)="abrirMenuRelatorio()">
-            Relatórios <span class="sr-only">(current)</span></a>
+           <i class="fa fa-list-alt"></i> Relatórios <span class="sr-only">(current)</span></a>
         </li>
       <li class="nav-item active">
-        <a class="nav-link" href="#"> Sobre <span class="sr-only">(current)</span></a>
+        <a class="nav-link" style="cursor: pointer;"
+        [routerLink]="['/sobre']"><i class="fa fa-institution"></i> Sobre <span class="sr-only">(current)</span></a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -94,3 +100,4 @@
         Relatório de Serviços </button></a>
   </div>
   </p-sidebar>
+

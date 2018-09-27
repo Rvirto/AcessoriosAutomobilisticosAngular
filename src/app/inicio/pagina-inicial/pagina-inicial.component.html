@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="ui-g-4" *ngFor="let prod of produtos">
+    <div class="card">
+      <img class="card-img-top" src="../../../assets/palheta.png">
+      <div class="card-body">
+        <h5 class="card-title">{{prod.produto}}</h5>
+        <p class="card-text" style="color: rgb(6, 204, 6); font-size: 25px;">{{ prod.precoVenda | currency:'BRL':true:'1.2-2' }}</p>
+        <button class="btn btn-success"><i class="fa fa-shopping-cart"></i> Adicionar ao Carrinho</button>
+      </div>
+    </div>
+  </div>
+</div>

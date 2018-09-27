@@ -9,6 +9,7 @@ export class PaginaBarraComponent implements OnInit {
 
 public menu: boolean;
 public menuRelatorio: boolean;
+public isCollapsed: boolean = true;
 
   constructor() { }
 

@@ -1,3 +1,4 @@
+import { SobreComponent } from './sobre/sobre/sobre.component';
 import { ClienteComponent } from './clientes/cliente/cliente.component';
 import { PaginaFornecedoresComponent } from './fornecedores/pagina-fornecedores/pagina-fornecedores.component';
 import { PaginaCarrosComponent } from './carros/pagina-carros/pagina-carros.component';
@@ -12,9 +13,11 @@ import { RelatorioFornecedoresComponent } from './fornecedores/relatorio-fornece
 import { RelatorioFuncionariosComponent } from './funcionarios/relatorio-funcionarios/relatorio-funcionarios.component';
 import { RelatorioProdutosComponent } from './produtos/relatorio-produtos/relatorio-produtos.component';
 import { RelatorioServicosComponent } from './servicos/relatorio-servicos/relatorio-servicos.component';
+import { PaginaInicialComponent } from './inicio/pagina-inicial/pagina-inicial.component';
 
 const routes: Routes = [
 
+  {path: '', component: PaginaInicialComponent},
   {path: 'carros', component: PaginaCarrosComponent},
   {path: 'fornecedores', component: PaginaFornecedoresComponent},
   {path: 'clientes', component: ClienteComponent},
@@ -26,7 +29,8 @@ const routes: Routes = [
   {path: 'relatorioFornecedores', component: RelatorioFornecedoresComponent},
   {path: 'relatorioFuncionarios', component: RelatorioFuncionariosComponent},
   {path: 'relatorioProdutos', component: RelatorioProdutosComponent},
-  {path: 'relatorioServicos', component: RelatorioServicosComponent}
+  {path: 'relatorioServicos', component: RelatorioServicosComponent},
+  {path: 'sobre', component: SobreComponent}
 ];
 
 @NgModule({

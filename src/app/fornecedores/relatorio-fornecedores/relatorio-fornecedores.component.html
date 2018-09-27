@@ -3,36 +3,15 @@
       <h1 class="text-center"><b>Fornecedores</b></h1>
     </div>
 
-    <div style="margin: auto; width: 100% !important;">
-      <table class="table table-striped table-dark table-responsive">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">Fornecedor</th>
-            <th scope="col">Telefone</th>
-            <th scope="col">E-mail</th>
-            <th scope="col">RG</th>
-            <th scope="col">CPF</th>
-            <th scope="col">Endereço</th>
-            <th scope="col">Número</th>
-            <th scope="col">Bairro</th>
-            <th scope="col">Cidade</th>
-            <th scope="col">UF</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let forne of fornecedores">
-            <td>{{ forne.nome }}</td>
-            <td>{{ forne.telefone }}</td>
-            <td>{{ forne.email }}</td>
-            <td>{{ forne.rg }}</td>
-            <td>{{ forne.cpf }}</td>
-            <td>{{ forne.endereco }}</td>
-            <td>{{ forne.numero }}</td>
-            <td>{{ forne.bairro }}</td>
-            <td>{{ forne.cidade }}</td>
-            <td>{{ forne.uf }}</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="ui-g-12">
+        <p-dataTable [value]="fornecedores" [paginator]="true" [rows]="8"
+        [responsive]="true" emptyMessage="Nenhum Fornecedor Encontrado..."
+        [rowsPerPageOptions]="['8','15', '20', '30', '50', '100']">
+        <p-column field="nome" header="Fornecedor"></p-column>
+        <p-column field="telefone" header="Contato" styleClass="tabela-cliente-contato"></p-column>
+        <p-column field="email" header="E-mail" ></p-column>
+        <p-column field="cidade" header="Cidade" styleClass="tabela-cliente-cidade"></p-column>
+        <p-column field="uf" header="UF" styleClass="tabela-cliente-acao"></p-column>
+        </p-dataTable>
     </div>
   </div>

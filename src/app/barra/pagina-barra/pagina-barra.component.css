@@ -1,7 +1,8 @@
-/*.imagem{
-    width: 73px;
-    height: 40px;
-    background:url(../../../assets/images/viagens.png);
+.imagem{
+    position: unset;
+    width: 100px;
+    height:40px;
+    background:url(../../../assets/LogoVirtus.png);
     background-size: cover;
     margin-right:15px;
-} */
+}
