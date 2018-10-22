@@ -1,8 +1,9 @@
 import { ToastyService } from 'ng2-toasty';
-import { Http, Headers } from '@angular/http';
+import { Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Cliente } from '../model/modelo';
 import 'rxjs//add/operator/toPromise';
+import { AuthHttp } from 'angular2-jwt';
 
 @Injectable()
 export class ClienteService {
@@ -10,7 +11,7 @@ export class ClienteService {
   private clientesURL = 'http://localhost:8080/clientes';
 
   constructor(
-    private http: Http,
+    private http: AuthHttp,
     private toastyService: ToastyService) { }
 
   public listarClientes(): Promise<Cliente[]> {

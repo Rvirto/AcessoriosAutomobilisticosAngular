@@ -1,7 +1,8 @@
 import { Fornecedor } from './../model/fornecedor.model';
 import { ToastyService } from 'ng2-toasty';
-import { Http, Headers } from '@angular/http';
+import { Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
+import { AuthHttp } from 'angular2-jwt';
 
 @Injectable()
 export class FornecedorService {
@@ -9,7 +10,7 @@ export class FornecedorService {
   private fornecedorURL = 'http://localhost:8080/fornecedores';
 
   constructor(
-    private http: Http,
+    private http: AuthHttp,
     private toastyService: ToastyService) { }
 
   public listarFornecedores(): Promise<Fornecedor[]> {

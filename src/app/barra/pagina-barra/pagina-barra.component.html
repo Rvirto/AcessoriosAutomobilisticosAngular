@@ -23,14 +23,18 @@
         [routerLink]="['/']" ><i class="fa fa-home"></i> Início <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="#"><i class="fa fa-shopping-cart"></i> Carrinho <span class="sr-only">(current)</span></a>
+        <a class="nav-link" style="cursor: pointer;"
+        [routerLink]="['/carrinho']"><i class="fa fa-shopping-cart"></i>
+         Carrinho <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" style="cursor: pointer;" (click)="abrirMenu()">
+        <a class="nav-link" style="cursor: pointer;" (click)="abrirMenu()"
+        *ngIf="loginService.temPermissao('ADMIN')">
          <i class="fa fa-database"></i> Cadastros <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-          <a class="nav-link" style="cursor: pointer;" (click)="abrirMenuRelatorio()">
+          <a class="nav-link" style="cursor: pointer;" (click)="abrirMenuRelatorio()"
+          *ngIf="loginService.temPermissao('ADMIN')">
            <i class="fa fa-list-alt"></i> Relatórios <span class="sr-only">(current)</span></a>
         </li>
       <li class="nav-item active">
@@ -39,7 +43,18 @@
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Entrar <i class="fa fa-sign-in" aria-hidden="true"></i></button>
+      <div *ngIf="loginService.taLogado">
+          <div style="color: white;margin-right: 10px;">
+            Olá, {{ loginService.jwtPayLoad.nome }}</div>
+      </div>
+      <div *ngIf="!loginService.taLogado">
+          <button class="btn btn-outline-light my-2 my-sm-0" type="submit" [routerLink]="['/login']">
+            Entrar <i class="fa fa-sign-in" aria-hidden="true"></i></button>
+      </div>
+      <div *ngIf="loginService.taLogado">
+          <button class="btn btn-outline-light my-2 my-sm-0" type="submit" (click)="fazerLogout()">
+            Sair <i class="fa fa-sign-out" aria-hidden="true"></i></button>
+      </div>
     </form>
   </div>
 

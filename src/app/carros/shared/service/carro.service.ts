@@ -1,9 +1,10 @@
 import { Carro } from './../model/Carros.model';
-import { Http, Headers } from '@angular/http';
+import { Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { ToastyService } from 'ng2-toasty';
 import 'rxjs/add/operator/toPromise';
 import { Cliente } from '../model/Cliente.model';
+import { AuthHttp } from 'angular2-jwt';
 
 @Injectable()
 export class CarroService {
@@ -12,7 +13,7 @@ export class CarroService {
   clientesURL = 'http://localhost:8080/clientes';
 
   constructor(
-    private http: Http,
+    private http: AuthHttp,
     private toastyService: ToastyService
   ) { }
 
@@ -31,7 +32,7 @@ export class CarroService {
     .then(response => response.json())
     .catch(erro => {
       this.toastyService.clearAll();
-      this.toastyService.error('Problemas técnicos ao buscar Carro selecionado!')
+      this.toastyService.error('Problemas técnicos ao buscar Carro selecionado!');
     });
   }
 

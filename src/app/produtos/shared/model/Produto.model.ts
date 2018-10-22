@@ -7,6 +7,7 @@ export class Produto {
   public precoCompra: number;
   public precoVenda: number;
   public quantidade: number;
+  public descricao: string;
   public fornecedor = new Fornecedor();
   public servico = new Servico();
 }

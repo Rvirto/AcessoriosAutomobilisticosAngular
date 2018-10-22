@@ -1,9 +1,10 @@
 import { Servico } from './../../../servicos/shared/model/Servico.model';
 import { Fornecedor } from './../../../fornecedores/shared/model/fornecedor.model';
-import { Http, Headers } from '@angular/http';
+import { Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 import { Produto } from './../model/Produto.model';
+import { AuthHttp } from 'angular2-jwt';
 
 @Injectable()
 export class ProdutoService {
@@ -13,7 +14,7 @@ export class ProdutoService {
   private servicosURL = 'http://localhost:8080/servicos';
 
   constructor(
-    private http: Http
+    private http: AuthHttp
   ) { }
 
   public buscarProdutos(): Promise<Produto[]> {
@@ -53,6 +54,12 @@ export class ProdutoService {
 
   public buscarServico(): Promise<Servico[]> {
     return this.http.get(`${this.servicosURL}`)
+    .toPromise()
+    .then(response => response.json());
+  }
+
+  public buscarProdutoId(id: number): Promise<Produto> {
+    return this.http.get(`${this.produtosURL}/${id}`)
     .toPromise()
     .then(response => response.json());
   }

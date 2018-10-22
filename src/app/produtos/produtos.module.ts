@@ -12,6 +12,7 @@ import { ProdutoService } from './shared/service/produto.service';
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
 import { DropdownModule } from 'primeng/components/dropdown/dropdown';
 import { RelatorioProdutosComponent } from './relatorio-produtos/relatorio-produtos.component';
+import {InputTextareaModule} from 'primeng/components/inputtextarea/inputtextarea';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { RelatorioProdutosComponent } from './relatorio-produtos/relatorio-produ
     InputTextModule,
     CurrencyMaskModule,
     DropdownModule,
-    InputMaskModule
+    InputMaskModule,
+    InputTextareaModule
   ],
   declarations: [PaginaProdutosComponent, RelatorioProdutosComponent],
   exports: [PaginaProdutosComponent, RelatorioProdutosComponent],

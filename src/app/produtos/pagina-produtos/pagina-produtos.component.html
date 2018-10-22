@@ -86,6 +86,12 @@
           [(ngModel)]="novoProduto.servico.id" name="serv" #Servico emptyFilterMessage="Nenhum Serviço Encontrado"></p-dropdown>
       </div>
 
+      <div class="ui-g-12 ui-fluid">
+        <label><b>Descrição do Produto</b></label>
+        <textarea rows="3" name="descricao" [(ngModel)]="novoProduto.descricao"
+         pInputTextarea autoResize="autoResize" #descricao></textarea>
+      </div>
+
     </form>
     <div class="ui-sm-12 ui-md-4 ui-g-6">
       <button class="btn btn-success" (click)="salvarProduto()" [disabled]="produto.invalid">
@@ -137,6 +143,11 @@
           [(ngModel)]="produtoSelecionado.servico.id" name="serv" #Servico emptyFilterMessage="Nenhum Serviço Encontrado"></p-dropdown>
       </div>
 
+      <div class="ui-g-12 ui-fluid">
+          <label><b>Descrição do Produto</b></label>
+          <textarea rows="3" name="descricao" [(ngModel)]="produtoSelecionado.descricao"
+           pInputTextarea #descricao required></textarea>
+        </div>
     </form>
     <div class="ui-sm-12 ui-md-4 ui-g-6">
       <button class="btn btn-success" (click)="editarProduto()" [disabled]="produtoEditar.invalid">

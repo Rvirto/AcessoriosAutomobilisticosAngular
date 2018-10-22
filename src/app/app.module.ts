@@ -12,10 +12,13 @@ import { ConfirmationService } from 'primeng/components/common/confirmationservi
 import { ServicosModule } from './servicos/servicos.module';
 import { ProdutosModule } from './produtos/produtos.module';
 import { InicioModule } from './inicio/inicio.module';
+import { CarrinhoModule } from './carrinho/carrinho.module';
 
 
 import { AppComponent } from './app.component';
 import { RoutingModule } from './routing.module';
+import { LoginModule } from './login/login.module';
+import { JwtHelper } from 'angular2-jwt';
 
 
 @NgModule({
@@ -35,9 +38,13 @@ import { RoutingModule } from './routing.module';
     ServicosModule,
     ProdutosModule,
     SobreModule,
-    InicioModule
+    InicioModule,
+    CarrinhoModule,
+    LoginModule
   ],
-  providers: [ConfirmationService],
+  providers: [
+    ConfirmationService,
+    JwtHelper],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

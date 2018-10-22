@@ -1,14 +1,15 @@
 import { Funcionario } from './../model/funcionario.model';
 import { ToastyService } from 'ng2-toasty';
-import { Http, Headers } from '@angular/http';
+import { Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
+import { AuthHttp } from 'angular2-jwt';
 
 @Injectable()
 export class FuncionarioService {
   private funcionarioURL = 'http://localhost:8080/funcionarios';
 
   constructor(
-    private http: Http,
+    private http: AuthHttp,
     private toastyService: ToastyService) { }
 
   public listarFuncionarios(): Promise<Funcionario[]> {

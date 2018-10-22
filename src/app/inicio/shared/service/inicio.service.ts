@@ -10,7 +10,7 @@ export class InicioService {
 
   constructor(
     private http: Http
-  ) { }
+      ) { }
 
   public buscarProdutos(): Promise<Produto[]> {
     return this.http.get(`${this.produtosURL}`)

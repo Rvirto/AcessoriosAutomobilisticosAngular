@@ -1,3 +1,4 @@
+import { InicialLoginComponent } from './login/inicial-login/inicial-login.component';
 import { SobreComponent } from './sobre/sobre/sobre.component';
 import { ClienteComponent } from './clientes/cliente/cliente.component';
 import { PaginaFornecedoresComponent } from './fornecedores/pagina-fornecedores/pagina-fornecedores.component';
@@ -14,6 +15,8 @@ import { RelatorioFuncionariosComponent } from './funcionarios/relatorio-funcion
 import { RelatorioProdutosComponent } from './produtos/relatorio-produtos/relatorio-produtos.component';
 import { RelatorioServicosComponent } from './servicos/relatorio-servicos/relatorio-servicos.component';
 import { PaginaInicialComponent } from './inicio/pagina-inicial/pagina-inicial.component';
+import { VerProdutoComponent } from './inicio/ver-produto/ver-produto.component';
+import { PaginaCarrinhoComponent } from './carrinho/pagina-carrinho/pagina-carrinho.component';
 
 const routes: Routes = [
 
@@ -30,7 +33,10 @@ const routes: Routes = [
   {path: 'relatorioFuncionarios', component: RelatorioFuncionariosComponent},
   {path: 'relatorioProdutos', component: RelatorioProdutosComponent},
   {path: 'relatorioServicos', component: RelatorioServicosComponent},
-  {path: 'sobre', component: SobreComponent}
+  {path: 'sobre', component: SobreComponent},
+  {path: 'produto/:id', component: VerProdutoComponent},
+  {path: 'carrinho', component: PaginaCarrinhoComponent},
+  {path: 'login', component: InicialLoginComponent}
 ];
 
 @NgModule({
