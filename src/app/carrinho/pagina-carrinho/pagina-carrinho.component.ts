@@ -1,9 +1,13 @@
+import { Router } from '@angular/router';
 import { InicioService } from './../../inicio/shared/service/inicio.service';
 import { ToastyService } from 'ng2-toasty';
 import { CarrinhoService } from './../shared/service/carrinho.service';
 import { Carrinho } from './../shared/model/Carrinho.model';
 import { Component, OnInit } from '@angular/core';
 import { ProdutoCarrinho } from '../shared/model/ProdutoCarrinho.model';
+import { OrcamentoService } from '../../orcamento/shared/service/orcamento.service';
+import { LoginService } from '../../login/shared/service/login.service';
+import { Orcamento } from '../../orcamento/shared/model/Orcamento.model';
 
 @Component({
   selector: 'app-pagina-carrinho',
@@ -16,11 +20,15 @@ export class PaginaCarrinhoComponent implements OnInit {
   public produtos: ProdutoCarrinho[];
   public totalProdutos: number;
   public temProduto: boolean;
+  private orcamento: Orcamento = new Orcamento();
 
   constructor(
     private carrinhoService: CarrinhoService,
     private toastyService: ToastyService,
-    private inicioService: InicioService
+    private inicioService: InicioService,
+    private router: Router,
+    private orcamentoService: OrcamentoService,
+    private loginService: LoginService
   ) { }
 
   ngOnInit() {
@@ -75,6 +83,18 @@ export class PaginaCarrinhoComponent implements OnInit {
   }
 
   public fazerOrcamento() {
-
+    this.orcamento.cliente.id = this.loginService.jwtPayLoad.idCli;
+    this.orcamento.produtosCarrinho = this.produtos;
+    this.orcamentoService.fazerOrcamento(this.orcamento)
+    .then(response => {
+      this.orcamento = response;
+      this.toastyService.clearAll();
+      this.toastyService.success('Orçamento realizado com sucesso!');
+      this.router.navigate(['/orcamento', this.orcamento.id]);
+    })
+    .catch(() => {
+      this.toastyService.clearAll();
+      this.toastyService.error('Problemas técnicos ao fazer Orçamento! Tente novamente...');
+    });
   }
 }

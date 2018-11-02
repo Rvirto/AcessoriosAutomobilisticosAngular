@@ -17,6 +17,7 @@ import { RelatorioServicosComponent } from './servicos/relatorio-servicos/relato
 import { PaginaInicialComponent } from './inicio/pagina-inicial/pagina-inicial.component';
 import { VerProdutoComponent } from './inicio/ver-produto/ver-produto.component';
 import { PaginaCarrinhoComponent } from './carrinho/pagina-carrinho/pagina-carrinho.component';
+import { InicialOrcamentoComponent } from './orcamento/inicial-orcamento/inicial-orcamento.component';
 
 const routes: Routes = [
 
@@ -36,7 +37,8 @@ const routes: Routes = [
   {path: 'sobre', component: SobreComponent},
   {path: 'produto/:id', component: VerProdutoComponent},
   {path: 'carrinho', component: PaginaCarrinhoComponent},
-  {path: 'login', component: InicialLoginComponent}
+  {path: 'login', component: InicialLoginComponent},
+  {path: 'orcamento/:id', component: InicialOrcamentoComponent}
 ];
 
 @NgModule({

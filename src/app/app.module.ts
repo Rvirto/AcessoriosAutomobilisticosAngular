@@ -13,6 +13,7 @@ import { ServicosModule } from './servicos/servicos.module';
 import { ProdutosModule } from './produtos/produtos.module';
 import { InicioModule } from './inicio/inicio.module';
 import { CarrinhoModule } from './carrinho/carrinho.module';
+import { OrcamentoModule } from './orcamento/orcamento.module';
 
 
 import { AppComponent } from './app.component';
@@ -40,7 +41,8 @@ import { JwtHelper } from 'angular2-jwt';
     SobreModule,
     InicioModule,
     CarrinhoModule,
-    LoginModule
+    LoginModule,
+    OrcamentoModule
   ],
   providers: [
     ConfirmationService,
