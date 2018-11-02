@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 import { Produto } from './../model/Produto.model';
 import { AuthHttp } from 'angular2-jwt';
+import { Imagem } from '../model/Imagem.model';
 
 @Injectable()
 export class ProdutoService {
@@ -12,6 +13,7 @@ export class ProdutoService {
   private produtosURL = 'http://localhost:8080/produtos';
   private fornecedorURL = 'http://localhost:8080/fornecedores';
   private servicosURL = 'http://localhost:8080/servicos';
+  private urlImagem = 'http://localhost:8080/imagens';
 
   constructor(
     private http: AuthHttp
@@ -60,6 +62,18 @@ export class ProdutoService {
 
   public buscarProdutoId(id: number): Promise<Produto> {
     return this.http.get(`${this.produtosURL}/${id}`)
+    .toPromise()
+    .then(response => response.json());
+    }
+
+  public uploadImagens(formData: FormData, idViagem: number) {
+    this.http.put(this.urlImagem + '/upload/' + idViagem, formData)
+    .toPromise()
+    .then(response => response.json());
+  }
+
+  public buscarImagens(id: number): Promise<Imagem[]> {
+    return this.http.get(this.urlImagem + '/imagem/' + id)
     .toPromise()
     .then(response => response.json());
   }

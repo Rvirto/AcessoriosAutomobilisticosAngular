@@ -7,6 +7,7 @@ import { Servico } from './../../servicos/shared/model/Servico.model';
 import { Component, OnInit } from '@angular/core';
 import { Produto } from '../shared/model/Produto.model';
 import { ProdutoService } from '../shared/service/produto.service';
+import { Imagem } from '../shared/model/Imagem.model';
 
 @Component({
   selector: 'app-pagina-produtos',
@@ -26,6 +27,8 @@ export class PaginaProdutosComponent implements OnInit {
   public dialogNovoFornecedor: boolean;
   public novoFornecedor: Fornecedor = new Fornecedor();
   public novoServico: Servico = new Servico();
+  public imagens: any;
+  public idProduto: number;
 
   constructor(
     private produtoService: ProdutoService,
@@ -97,6 +100,8 @@ export class PaginaProdutosComponent implements OnInit {
   public salvarProduto(): void {
     this.produtoService.adicionarProduto(this.novoProduto)
     .then(response => {
+      this.idProduto = response.id;
+      this.salvarImagens();
       this.toastyService.clearAll();
       this.toastyService.success('Produto foi adicionado com sucesso!');
       this.fechar();
@@ -187,5 +192,19 @@ export class PaginaProdutosComponent implements OnInit {
       this.toastyService.clearAll();
       this.toastyService.error('Problemas técnicos ao adicionar Fornecedor! Tente novamente...');
     });
+  }
+
+  public onUpload(event) {
+    this.imagens = event;
+  }
+
+  salvarImagens() {
+    for (const file of this.imagens.target.files) {
+      const formData = new FormData();
+      formData.append('arquivo', file);
+      this.produtoService.uploadImagens(formData, this.idProduto);
+      this.toastyService.clearAll();
+      this.toastyService.success('Upaload Realizado com sucesso!');
+    }
   }
 }

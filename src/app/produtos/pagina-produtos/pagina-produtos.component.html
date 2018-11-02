@@ -87,6 +87,13 @@
       </div>
 
       <div class="ui-g-12 ui-fluid">
+        <label>Imagens</label>
+          <input name="filesToUpload" type="file" multiple=""
+                  (change)="onUpload($event)" value="Selecione as imagens"
+                  name="imagem" required>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
         <label><b>Descrição do Produto</b></label>
         <textarea rows="3" name="descricao" [(ngModel)]="novoProduto.descricao"
          pInputTextarea autoResize="autoResize" #descricao></textarea>

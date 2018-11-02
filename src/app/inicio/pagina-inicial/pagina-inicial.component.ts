@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InicioService } from '../shared/service/inicio.service';
 import { ToastyService } from 'ng2-toasty';
-import { Produto } from '../../produtos/shared/model/Produto.model';
+import { ProdutoImagem } from '../../produtos/shared/model/ProdutoImagem.mode';
 
 @Component({
   selector: 'app-pagina-inicial',
@@ -10,7 +10,7 @@ import { Produto } from '../../produtos/shared/model/Produto.model';
 })
 export class PaginaInicialComponent implements OnInit {
 
-  public produtos: Produto[];
+  public produtos: ProdutoImagem[];
 
   constructor(
     private inicioService: InicioService,
@@ -25,6 +25,7 @@ export class PaginaInicialComponent implements OnInit {
     this.inicioService.buscarProdutos()
     .then(response => {
       this.produtos = response;
+      this.buscarImagem();
     })
     .catch(erro => {
       this.toastyService.clearAll();
@@ -32,4 +33,12 @@ export class PaginaInicialComponent implements OnInit {
     });
   }
 
+  public buscarImagem() {
+    for (let i = 0; i < this.produtos.length; i++) {
+      this.inicioService.buscarImagemPeloProduto(this.produtos[i].id)
+      .then(response => {
+        this.produtos[i].imagem = response[0].nome;
+      });
+    }
+  }
 }

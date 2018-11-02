@@ -4,40 +4,35 @@
     <h2 class="text-center"><b>Visualização do Produto</b></h2>
   </div>
 
-  <div class="ui-g-5" style="background-color: rgba(232, 243, 255, 0.856); border-radius: 15px;">
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img class="d-block w-100" src="../../../assets/palheta.png" alt="{{produto.produto}}">
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleControls"
-         role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Anterior</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleControls"
-         role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Próximo</span>
-        </a>
-      </div>
+  <div class="ui-g-5">
+    <p-galleria [images]="imagens" panelWidth="400"
+    panelHeight="250"></p-galleria>
 
-      <div class="ui-g-12">
+      <div class="ui-g-10" style="margin-left: 10px;">
         <hr>
       </div>
-      <div class="text-center">
+      <div class="ui-g-12" style="margin-left: 125px;">
        <h5><b> {{produto.produto}} </b></h5>
        <p class="card-text" style="color: rgb(6, 204, 6); font-size: 25px;">
-        {{ produto.precoVenda | currency:'BRL':true:'1.2-2' }}</p>
+        {{ valorProduto | currency:'BRL':true:'1.2-2' }}</p>
       </div>
     </div>
-  </div>
 
 
   <div class="ui-g-5" style="margin-left: 150px;">
-    <img src="../../../assets/pagSeguro.jpg" style="width: 100%; border-radius: 10px;">
-    <button class="btn btn-success" style="margin-left: 100px; margin-top: 10px;">
-      <i class="fa fa-shopping-cart"></i> Adicionar ao Carrinho</button>
+
+    <img src="./assets/pagSeguro.jpg" style="width: 100%; border-radius: 10px;">
+
+    <label style="margin-top: 20px;"><b>Quantidade</b></label>
+
+    <p-spinner size="3" [(ngModel)]="quantidadeProduto"
+    (click)="mudaQuantidade()" [min]="1" [max]="produto.quantidade"
+     style="margin-top: 20px; margin-left: 3px;"></p-spinner>
+
+    <button class="btn btn-success" style="margin-top: 2px;margin-left: 5px;"
+    (click)="adicionarNoCarrinho()"><i class="fa fa-shopping-cart"></i>
+    Adicionar ao Carrinho</button>
+
   </div>
 
   <div class="ui-g-12">

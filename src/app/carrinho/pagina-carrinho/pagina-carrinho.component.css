@@ -1,0 +1,10 @@
+.fundo-carrinho {
+  background-color: rgba(232, 243, 255, 0.856);
+  border-radius: 15px;
+}
+
+hr {
+  color: grey;
+  background-color: grey;
+  height: 1px;
+}

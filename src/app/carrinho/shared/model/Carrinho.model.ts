@@ -1,8 +1,8 @@
+import { ProdutoCarrinho } from './ProdutoCarrinho.model';
 import { Cliente } from './../../../clientes/shared/model/modelo';
-import { Produto } from './../../../produtos/shared/model/Produto.model';
 export class Carrinho {
-
   public id: number;
   public cliente = new Cliente();
-  public produto: Produto[];
+  public produtoCarrinho: ProdutoCarrinho[] = [];
+  public status: string;
 }
