@@ -103,7 +103,7 @@
           </form>
            <div class="ui-sm-12 ui-md-4 ui-g-6">
              <button class="btn btn-success"
-             (click)="salvarFornecedor()" [disabled]="fornecedor.invalid">
+             (click)="salvarFornecedor()" [disabled]="fornecedor.valid">
              <i class="fa fa-check"></i> Salvar</button>
            </div>
 
@@ -186,7 +186,7 @@
            </div>
     </form>
            <div class="ui-sm-12 ui-md-5 ui-g-6">
-             <button class="btn btn-success" [disabled]="!fornecedor.valid"
+             <button class="btn btn-success" [disabled]="fornecedor.valid"
              (click)="atualizaFornecedor()">
              <i class="fa fa-retweet"></i> Atualizar e Fechar</button>
            </div>

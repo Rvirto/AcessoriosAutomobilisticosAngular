@@ -10,6 +10,7 @@ import { PaginaCarrosComponent } from './pagina-carros/pagina-carros.component';
 import { HttpModule } from '@angular/http';
 import {DropdownModule} from 'primeng/components/dropdown/dropdown';
 import { RelatorioCarrosComponent } from './relatorio-carros/relatorio-carros.component';
+import {PasswordModule} from 'primeng/components/password/password';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { RelatorioCarrosComponent } from './relatorio-carros/relatorio-carros.co
     InputTextModule,
     DialogModule,
     FormsModule,
-    InputMaskModule
+    InputMaskModule,
+    PasswordModule
   ],
   declarations: [PaginaCarrosComponent, RelatorioCarrosComponent],
   providers: [CarroService],

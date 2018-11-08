@@ -1,3 +1,51 @@
-<p>
-  inicial-orcamento works!
-</p>
+<div class="container">
+
+  <div class="ui-g-12">
+    <h2 class="text-center"><b>Orçamento</b></h2>
+  </div>
+
+  <div class="ui-g-12 fundo-carrinho">
+      <div  *ngFor="let prod of orcamento.produtos">
+    <div class="ui-g-3">
+
+      <img class="card-img-top" src="../../../assets/{{ prod.imagem }}"
+       style="width: 100%; height: 100%;">
+    </div>
+
+    <div class="ui-g-6">
+      <h4 class="text-center"><b>{{ prod.produto }}</b></h4>
+    </div>
+
+    <div class="ui-g-3">
+      <label><b> Valor Unitário</b></label>
+      <p style="color: rgb(6, 204, 6); font-size: 25px;">
+        {{ prod.precoVenda | currency:'BRL':true:'1.2-2' }}</p>
+    </div>
+
+    <div class="ui-g-12">
+        <hr>
+      </div>
+    </div>
+    <div class="ui-g-12" style="float: right;">
+      <h4 style="text-align: right;">Total</h4>
+      <p style="color: rgb(6, 204, 6); font-size: 25px; float: right;">
+        {{ orcamento.valorTotal | currency:'BRL':true:'1.2-2' }}</p>
+  </div>
+  </div>
+
+  <div class="ui-g-12">
+
+    <div class="ui-g-12">
+       <h2 class="text-center"><b>Informações</b></h2>
+     </div>
+
+      <div class="ui-g-12">
+          <hr>
+        </div>
+
+        <p><b>O valor do Orçamento, está baseado no valor
+          dos produtos e na quantidade desejada, o valor final inclui
+          a instalação dos mesmos. O valor pode se alterar de acordo com a
+        forma de pagamento.</b></p>
+  </div>
+</div>

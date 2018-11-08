@@ -99,6 +99,15 @@ width="600" [draggable]="false">
             <input pInputText type="text" name="uf" required
             [(ngModel)]="novoCliente.uf" minlength="2" maxlength="2" #ufCliente>
          </div>
+         <div class="ui-g-6">
+            <label><b>Senha</b></label>
+            <input pPassword type="password" required name="senha" [(ngModel)]="senhaCli">
+         </div>
+
+         <div class="ui-g-6">
+            <label><b>Confirme sua Senha</b></label>
+            <input pPassword type="password" required name="senha" [(ngModel)]="novoCliente.senha">
+         </div>
         </form>
          <div class="ui-sm-12 ui-md-4 ui-g-6">
            <button class="btn btn-success" [disabled]="!cliente.valid"
@@ -186,7 +195,7 @@ width="600" [draggable]="false">
 </form>
          <div class="ui-sm-12 ui-md-5 ui-g-6">
            <button class="btn btn-success"
-           (click)="atualizaCliente()" [disabled]="!clientes.valid">
+           (click)="atualizaCliente()" [disabled]="clientes.valid">
            <i class="fa fa-retweet"></i> Atualizar e Fechar</button>
          </div>
 

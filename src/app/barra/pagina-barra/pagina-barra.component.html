@@ -24,9 +24,19 @@
       </li>
       <li class="nav-item active">
         <a class="nav-link" style="cursor: pointer;"
-        [routerLink]="['/carrinho']"><i class="fa fa-shopping-cart"></i>
+        [routerLink]="['/carrinho']" *ngIf="loginService.taLogado"><i class="fa fa-shopping-cart"></i>
          Carrinho <span class="sr-only">(current)</span></a>
       </li>
+      <li class="nav-item active">
+          <a class="nav-link" style="cursor: pointer;"
+          [routerLink]="['/meusOrcamentos']" *ngIf="loginService.taLogado"><i class="fa fa-file"></i>
+           Meus Orçamentos <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" style="cursor: pointer;"
+            [routerLink]="['/meusDados']" *ngIf="loginService.taLogado"><i class="fa fa-user-circle"></i>
+             Meus Dados <span class="sr-only">(current)</span></a>
+          </li>
       <li class="nav-item active">
         <a class="nav-link" style="cursor: pointer;" (click)="abrirMenu()"
         *ngIf="loginService.temPermissao('ADMIN')">
@@ -114,5 +124,9 @@
     <a [routerLink]="['/relatorioServicos']"><button class="btn btn-outline-primary btn-lg btn-block">
         Relatório de Serviços </button></a>
   </div>
+  <div class="ui-sm-12 ui-md-12 ui-g-12">
+      <a [routerLink]="['/relatorioOrcamentos']"><button class="btn btn-outline-primary btn-lg btn-block">
+          Relatório de Orçamentos </button></a>
+    </div>
   </p-sidebar>
 

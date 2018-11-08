@@ -18,6 +18,9 @@ import { PaginaInicialComponent } from './inicio/pagina-inicial/pagina-inicial.c
 import { VerProdutoComponent } from './inicio/ver-produto/ver-produto.component';
 import { PaginaCarrinhoComponent } from './carrinho/pagina-carrinho/pagina-carrinho.component';
 import { InicialOrcamentoComponent } from './orcamento/inicial-orcamento/inicial-orcamento.component';
+import { MeusOrcamentosComponent } from './orcamento/meus-orcamentos/meus-orcamentos.component';
+import { TodosOrcamentosComponent } from './orcamento/todos-orcamentos/todos-orcamentos.component';
+import { MeusDadosComponent } from './clientes/meus-dados/meus-dados.component';
 
 const routes: Routes = [
 
@@ -38,7 +41,10 @@ const routes: Routes = [
   {path: 'produto/:id', component: VerProdutoComponent},
   {path: 'carrinho', component: PaginaCarrinhoComponent},
   {path: 'login', component: InicialLoginComponent},
-  {path: 'orcamento/:id', component: InicialOrcamentoComponent}
+  {path: 'orcamento/:id', component: InicialOrcamentoComponent},
+  {path: 'meusOrcamentos', component: MeusOrcamentosComponent},
+  {path: 'relatorioOrcamentos', component: TodosOrcamentosComponent},
+  {path: 'meusDados', component: MeusDadosComponent}
 ];
 
 @NgModule({

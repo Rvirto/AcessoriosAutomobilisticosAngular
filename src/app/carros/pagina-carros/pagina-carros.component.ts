@@ -20,6 +20,7 @@ export class PaginaCarrosComponent implements OnInit {
   public dialogEditarCarro: boolean;
   public dialogNovoCliente: boolean;
   public novoCliente: Cliente = new Cliente();
+  public senhaCli: string;
 
   constructor(
     private carroService: CarroService,
@@ -106,17 +107,22 @@ export class PaginaCarrosComponent implements OnInit {
   }
 
   public salvarCliente() {
-    this.clienteService.novoCliente(this.novoCliente)
-    .then(response => {
-      this.carregarClientes();
+    if (this.novoCliente.senha === this.senhaCli) {
+      this.clienteService.novoCliente(this.novoCliente)
+      .then(response => {
+        this.carregarClientes();
+        this.toastyService.clearAll();
+        this.toastyService.success('Cliente Adicionado com Sucesso!');
+        this.fecharCliente();
+      })
+      .catch(erro => {
+        this.toastyService.clearAll();
+        this.toastyService.error('Problemas técnicos ao adicionar Cliente! Tente novamente...');
+      });
+    } else {
       this.toastyService.clearAll();
-      this.toastyService.success('Cliente Adicionado com Sucesso!');
-      this.fecharCliente();
-    })
-    .catch(erro => {
-      this.toastyService.clearAll();
-      this.toastyService.error('Problemas técnicos ao adicionar Cliente! Tente novamente...');
-    });
+      this.toastyService.warning('As senhas não conferem, por favor tente novamente!');
+    }
   }
 
   public fecharCliente() {

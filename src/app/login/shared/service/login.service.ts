@@ -1,3 +1,4 @@
+import { Cliente } from './../../../carros/shared/model/Cliente.model';
 import { Http, Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise';
@@ -9,6 +10,7 @@ export class LoginService {
   private urlLogin = 'http://localhost:8080/oauth/token';
   public jwtPayLoad: any;
   public taLogado: boolean;
+  private clientesURL = 'http://localhost:8080/clientes';
 
   constructor(
     private http: Http,
@@ -54,5 +56,12 @@ export class LoginService {
   public limparAccesToken() {
     localStorage.removeItem('token');
     this.jwtPayLoad = null;
+  }
+
+  public novoCliente(cliente: Cliente): Promise<Cliente> {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(`${this.clientesURL}`, JSON.stringify(cliente), { headers }).toPromise()
+    .then(response => response.json());
   }
 }

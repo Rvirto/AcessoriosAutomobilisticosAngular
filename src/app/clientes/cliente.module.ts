@@ -12,6 +12,8 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
 import { RelatorioClientesComponent } from './relatorio-clientes/relatorio-clientes.component';
+import {PasswordModule} from 'primeng/components/password/password';
+import { MeusDadosComponent } from './meus-dados/meus-dados.component';
 
 @NgModule({
   imports: [
@@ -24,10 +26,11 @@ import { RelatorioClientesComponent } from './relatorio-clientes/relatorio-clien
     InputMaskModule,
     FormsModule,
     BrowserAnimationsModule,
-    InputTextModule
+    InputTextModule,
+    PasswordModule
   ],
-  declarations: [ClienteComponent, RelatorioClientesComponent],
+  declarations: [ClienteComponent, RelatorioClientesComponent, MeusDadosComponent],
   providers: [ClienteService],
-  exports: [ClienteComponent, RelatorioClientesComponent]
+  exports: [ClienteComponent, RelatorioClientesComponent, MeusDadosComponent]
 })
 export class ClienteModule { }

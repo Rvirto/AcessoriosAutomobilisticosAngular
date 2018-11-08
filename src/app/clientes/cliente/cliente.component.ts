@@ -16,6 +16,7 @@ export class ClienteComponent implements OnInit {
   public dialogEditarCliente: boolean;
   public clienteSelecionado: Cliente;
   public novoCliente = new Cliente();
+  public senhaCli: string;
 
   constructor(
     private clienteService: ClienteService,
@@ -60,16 +61,21 @@ export class ClienteComponent implements OnInit {
   }
 
   public salvarCliente() {
-    this.clienteService.novoCliente(this.novoCliente)
-    .then(response => {
+    if (this.novoCliente.senha === this.senhaCli) {
+      this.clienteService.novoCliente(this.novoCliente)
+      .then(response => {
+        this.toastyService.clearAll();
+        this.toastyService.success('Cliente cadastrado com sucesso!');
+        this.fechar();
+      })
+      .catch(erro => {
+        this.toastyService.clearAll();
+        this.toastyService.error('Problema ao cadastrar novo Cliente!');
+      });
+    } else {
       this.toastyService.clearAll();
-      this.toastyService.success('Cliente cadastrado com sucesso!');
-      this.fechar();
-    })
-    .catch(erro => {
-      this.toastyService.clearAll();
-      this.toastyService.error('Problema ao cadastrar novo Cliente!');
-    });
+      this.toastyService.warning('As senhas não conferem, por favor tente novamente!');
+    }
 
   }
     public atualizaCliente() {

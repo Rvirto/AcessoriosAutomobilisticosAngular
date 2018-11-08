@@ -33,23 +33,24 @@ export class PaginaCarrinhoComponent implements OnInit {
 
   ngOnInit() {
     this.buscarProdutos();
+    this.orcamentoService.buscarMeusOrcamentos(this.loginService.jwtPayLoad.idCli);
   }
 
   public buscarProdutos(): void {
     this.carrinhoService.buscarProdutosDoCarrinho()
     .then(response => {
-      this.carrinho = response;
-      this.produtos = this.carrinho.produtoCarrinho;
-      if (this.produtos.length === 0) {
-        this.temProduto = false;
-      } else {
-        this.temProduto = true;
-      }
-      this.totalProdutos = 0;
-      for (let i = 0; i < this.produtos.length; i++) {
-        this.totalProdutos += this.produtos[i].valorVenda;
-      }
-      this.buscarImagem();
+        this.carrinho = response;
+        this.produtos = this.carrinho.produtoCarrinho;
+        if (this.produtos.length === 0) {
+          this.temProduto = false;
+        } else {
+          this.temProduto = true;
+        }
+        this.totalProdutos = 0;
+        for (let i = 0; i < this.produtos.length; i++) {
+          this.totalProdutos += this.produtos[i].valorVenda;
+        }
+        this.buscarImagem();
     });
   }
 
@@ -83,9 +84,8 @@ export class PaginaCarrinhoComponent implements OnInit {
   }
 
   public fazerOrcamento() {
-    this.orcamento.cliente.id = this.loginService.jwtPayLoad.idCli;
-    this.orcamento.produtosCarrinho = this.produtos;
-    this.orcamentoService.fazerOrcamento(this.orcamento)
+    this.orcamentoService.fazerOrcamento(this.produtos,
+      this.loginService.jwtPayLoad.idCli, this.carrinho.id)
     .then(response => {
       this.orcamento = response;
       this.toastyService.clearAll();

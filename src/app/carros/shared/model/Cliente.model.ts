@@ -11,4 +11,5 @@ export class Cliente {
   public uf: string;
   public rg: string;
   public cpf: string;
+  public senha: string;
  }
